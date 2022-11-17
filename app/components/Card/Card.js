@@ -1,58 +1,52 @@
-import React, { useState } from 'react';
-import { Text, View, Dimensions, Image, Animated, PanResponder, Button } from 'react-native';
+import React from 'react';
+import { Text, View, Dimensions, Image, Animated, PanResponder, StyleSheet } from 'react-native';
 import CardText from './CardText';
 import { players } from '../../data/players.js';
 import { useAttendanceStore } from '../../store/store';
 
 const Card = ({ setCurrentIndex, currentIndex }) => {
-	const [position, setPosition] = useState(new Animated.ValueXY());
 	const increaseAbsence = useAttendanceStore(state => state.increaseAbsence);
 	const increaseAttendance = useAttendanceStore(state => state.increaseAttendance);
-
-	const SCREEN_HEIGHT = Dimensions.get('window').height;
 	const SCREEN_WIDTH = Dimensions.get('window').width;
+	const nextCard = () => setCurrentIndex(currentValue => currentValue + 1);
+	const position = new Animated.ValueXY();
 
 	const panResponder = PanResponder.create({
+		// for Element's Attr
 		onStartShouldSetPanResponder: () => true,
-		onPanResponderMove: (evt, gestureState) => {
-			position.setValue({ x: gestureState.dx, y: gestureState.dy });
+		onPanResponderMove: (evt, { dx, dy }) => {
+			// Move Event
+			position.setValue({ x: dx, y: dy });
 		},
-		onPanResponderRelease: (evt, gestureState) => {
-			if (gestureState.dx > 120) {
+		onPanResponderRelease: (evt, { dx, dy }) => {
+			// Release Event
+			if (dx >= 150) {
+				// Swpied right side
 				Animated.spring(position, {
-					toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy },
-					useNativeDriver: true,
-				}).start(() => {
-					setCurrentIndex(currentIndex + 1);
-					position.setValue({ x: 0, y: 0 });
-				});
+					toValue: { x: SCREEN_WIDTH + 100, y: dy },
+					useNativeDriver: true, // this option make performance better
+				}).start(nextCard);
 				increaseAttendance();
-			} else if (gestureState.dx < -120) {
+			} else if (dx <= -150) {
+				// Swiped left side
 				Animated.spring(position, {
-					toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy },
+					toValue: { x: -SCREEN_WIDTH - 100, y: dy },
 					useNativeDriver: true,
-				}).start(() => {
-					increaseAbsence;
-					setCurrentIndex(currentIndex + 1);
-					position.setValue({ x: 0, y: 0 });
-				});
+				}).start(nextCard);
 				increaseAbsence();
 			} else {
+				// Place the card to original position
 				Animated.spring(position, {
 					toValue: { x: 0, y: 0 },
 					useNativeDriver: true,
-					friction: 4,
+					bounciness: 10,
 				}).start();
 			}
 		},
 	});
 
 	const inputRange = [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2];
-	const rotate = position.x.interpolate({
-		inputRange: inputRange,
-		outputRange: ['-10deg', '0deg', '10deg'],
-		extrapolate: 'clamp',
-	});
+
 	const yupOpacity = position.x.interpolate({
 		inputRange: inputRange,
 		outputRange: [0, 0, 1],
@@ -63,12 +57,17 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 		outputRange: [1, 0, 0],
 		extrapolate: 'clamp',
 	});
-	const nextCardOpacity = position.x.interpolate({
+	const rotationValues = position.x.interpolate({
 		inputRange: inputRange,
-		outputRange: [1, 0, 1],
+		outputRange: ['-8deg', '0deg', '8deg'],
 		extrapolate: 'clamp',
 	});
-	const nextCardScale = position.x.interpolate({
+	const secondCardOpacity = position.x.interpolate({
+		inputRange: inputRange,
+		outputRange: [1, 0.2, 1],
+		extrapolate: 'clamp',
+	});
+	const secondCardScale = position.x.interpolate({
 		inputRange: inputRange,
 		outputRange: [1, 0.8, 1],
 		extrapolate: 'clamp',
@@ -76,23 +75,32 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 	return (
 		<View style={{ flex: 1 }}>
 			{players
-				.map((player, i) =>
-					i < currentIndex ? null : i == currentIndex ? (
+				.map((player, index) => {
+					return index < currentIndex ? null : (
 						<Animated.View
-							key={i}
+							key={index}
 							style={[
-								{
-									height: SCREEN_HEIGHT - 120,
-									width: SCREEN_WIDTH,
-									padding: 10,
-									position: 'absolute',
-									transform: [{ translateX: position.x }, { translateY: 0 }, { rotate: rotate }],
-								},
+								styles.card,
+								index === currentIndex
+									? {
+											zIndex: 1,
+											transform: [{ rotate: rotationValues }, ...position.getTranslateTransform()],
+									  }
+									: index === currentIndex + 1
+									? {
+											opacity: secondCardOpacity,
+											transform: [{ scale: secondCardScale }],
+											zIndex: -index,
+									  }
+									: {
+											opacity: 0,
+											zIndex: -index,
+									  },
 							]}
 							{...panResponder.panHandlers}>
 							<Animated.View
 								style={{
-									opacity: yupOpacity,
+									opacity: index === currentIndex ? yupOpacity : 0,
 									transform: [{ rotate: '-30deg' }],
 									position: 'absolute',
 									top: 50,
@@ -113,7 +121,7 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 							</Animated.View>
 							<Animated.View
 								style={{
-									opacity: nopeOpacity,
+									opacity: index === currentIndex ? nopeOpacity : 0,
 									transform: [{ rotate: '30deg' }],
 									position: 'absolute',
 									top: 50,
@@ -135,8 +143,8 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 							<Image
 								style={{
 									flex: 1,
-									height: null,
-									width: null,
+									height: '100%',
+									width: '100%',
 									resizeMode: 'cover',
 									borderRadius: 20,
 								}}
@@ -144,34 +152,21 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 							/>
 							<CardText>{player.name}</CardText>
 						</Animated.View>
-					) : (
-						<Animated.View
-							key={i}
-							style={{
-								opacity: nextCardOpacity,
-								transform: [{ scale: nextCardScale }],
-								height: SCREEN_HEIGHT - 120,
-								width: SCREEN_WIDTH,
-								padding: 10,
-								position: 'absolute',
-							}}>
-							<Image
-								style={{
-									flex: 1,
-									height: null,
-									width: null,
-									resizeMode: 'cover',
-									borderRadius: 20,
-								}}
-								source={player.uri}
-							/>
-							<CardText>{player.name}</CardText>
-						</Animated.View>
-					)
-				)
+					);
+				})
 				.reverse()}
 		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	card: {
+		height: '100%',
+		width: '100%',
+		padding: 10,
+		position: 'absolute',
+		top: 0,
+	},
+});
 
 export default Card;
