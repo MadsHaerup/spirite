@@ -1,0 +1,32 @@
+[
+	{
+		"id": "1",
+		"name": "Mike",
+		"uri": "/assets/images/player1.jpg"
+	},
+	{
+		"id": "2",
+		"name": "Andy",
+		"uri": "/assets/images/player2.jpg"
+	},
+	{
+		"id": "3",
+		"name": "Craig",
+		"uri": "/assets/images/player3.jpg"
+	},
+	{
+		"id": "4",
+		"name": "Jogn",
+		"uri": "/assets/images/player4.jpg"
+	},
+	{
+		"id": "5",
+		"name": "Neil",
+		"uri": "/assets/images/player5.jpg"
+	},
+	{
+		"id": "6",
+		"name": "Joe",
+		"uri": "/assets/images/player6.jpg"
+	}
+]
