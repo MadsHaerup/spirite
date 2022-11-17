@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import Card from '../components/Card/Card';
-import { Button } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 const Home = () => {
+	const theme = useTheme();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={{ flex: 1, backgroundColor: theme.colors.background }}>
 			<View style={{ height: 20 }} />
 			<Card setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { View, ScrollView } from 'react-native';
-import { Headline, TextInput, Button, Portal, Provider } from 'react-native-paper';
+import { Headline, TextInput, Button } from 'react-native-paper';
 import { v4 as uuidv4 } from 'uuid';
 import { UserContext } from '../../context/context';
 import { useRealm } from '../../models/Player';
@@ -9,26 +9,38 @@ import ListItem from '../List/ListItem';
 import ListSection from '../List/ListSection';
 import PositionSelector from '../Modal/PositionSelector';
 const Form = () => {
+	// const user = useContext(UserContext);
+	const realm = useRealm();
 	const [name, setName] = useState('');
-	// const teamMembes = useStore(state => state.players);
-	const addPlayer = useStore(state => state.addPlayer);
-	const playerRef = useRef(useStore.getState().players);
-	// console.log(teamMembes);
-	const [teamMembers, setTeamMembers] = useState([]);
-	const user = useContext(UserContext);
+	const [value, setValue] = useState('Defender');
+	const [players, setPlayers] = useState([]);
 
 	useEffect(() => {
-		const getPlayers = async () => {
-			const getAllPlayers = await user.functions.getAllPlayers();
-			setTeamMembers(getAllPlayers);
-		};
-		getPlayers();
+		(async () => {
+			const players = realm.objects('player');
+			// set state to the initial value of your realm objects
+			setPlayers([...players]);
+			try {
+				players.addListener(() => {
+					// update state of players to the updated value
+					setPlayers([...players]);
+				});
+			} catch (error) {
+				console.error(
+					`Unable to update the players' state, an exception was thrown within the change listener: ${error}`
+				);
+			}
+
+			// cleanup function
+			return () => {
+				// Remember to remove the listener when you're done!
+				players.removeAllListeners();
+				// Call the close() method when done with a realm instance to avoid memory leaks.
+				realm.close();
+			};
+		})();
 	}, []);
-
-	console.log('TEAM', teamMembers);
-
-	const [value, setValue] = useState('Defender');
-	const realm = useRealm();
+	console.log(players);
 
 	const addPlayerToRealm = () => {
 		realm.write(() => {
@@ -40,15 +52,6 @@ const Form = () => {
 			});
 		});
 	};
-
-	useEffect(
-		() =>
-			useStore.subscribe(
-				players => (playerRef.current = players),
-				state => state.players
-			),
-		[]
-	);
 
 	return (
 		<ScrollView>
@@ -68,7 +71,7 @@ const Form = () => {
 			<Button
 				onPress={() => {
 					if (name.length > 0) {
-						addPlayer(name, value);
+						// addPlayer(name, value);
 						addPlayerToRealm();
 						setName('');
 					}
@@ -78,8 +81,14 @@ const Form = () => {
 
 			<View>
 				<ListSection>
-					{teamMembers?.map(member => (
-						<ListItem key={uuidv4 + Math.random()} name={member.name} position={member.position} src={member.uri} />
+					{players?.map(player => (
+						<ListItem
+							key={uuidv4 + Math.random()}
+							name={player.name}
+							player={player}
+							position={player.position}
+							src={player.uri}
+						/>
 					))}
 				</ListSection>
 			</View>

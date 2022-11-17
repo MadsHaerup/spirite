@@ -4,6 +4,7 @@ import Tabs from './app/components/Tabs/Tabs';
 import { playerSchema, RealmProvider } from './app/models/Player';
 import { Realm } from '@realm/react';
 import { UserContext } from './app/context/context';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {
 	const [user, setUser] = useState(null);
@@ -23,7 +24,6 @@ export default function App() {
 					},
 				};
 
-				console.log('config', config);
 				console.log(user, 'user');
 
 				const realm = await Realm.open(config);
@@ -37,7 +37,7 @@ export default function App() {
 				// realm.write(() => {
 				// 	realm.create('player', {
 				// 		_id: new Realm.BSON.ObjectId(),
-				// 		name: 'Chuchu',
+				// 		name: 'SON',
 				// 		position: 'defender',
 				// 		uri: '/assets/images/player1.jpg',
 				// 	});
@@ -51,12 +51,14 @@ export default function App() {
 	}, []);
 
 	return user ? (
-		<UserContext.Provider value={user}>
-			<RealmProvider sync={{ user, flexible: true }}>
-				<NavigationContainer>
-					<Tabs />
-				</NavigationContainer>
-			</RealmProvider>
-		</UserContext.Provider>
+		<PaperProvider>
+			<UserContext.Provider value={user}>
+				<RealmProvider sync={{ user, flexible: true }}>
+					<NavigationContainer>
+						<Tabs />
+					</NavigationContainer>
+				</RealmProvider>
+			</UserContext.Provider>
+		</PaperProvider>
 	) : null;
 }
