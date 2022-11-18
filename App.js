@@ -33,17 +33,6 @@ export default function App() {
 					const players = realm.objects('player');
 					subs.add(players);
 				});
-
-				// realm.write(() => {
-				// 	realm.create('player', {
-				// 		_id: new Realm.BSON.ObjectId(),
-				// 		name: 'SON',
-				// 		position: 'defender',
-				// 		uri: '/assets/images/player1.jpg',
-				// 	});
-				// });
-				// const allPlayers = realm.objects('player');
-				// console.log(allPlayers, 'allplayers');
 			} catch (error) {
 				console.log(error);
 			}
