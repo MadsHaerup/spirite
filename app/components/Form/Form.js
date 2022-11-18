@@ -1,14 +1,15 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Headline, TextInput, Button } from 'react-native-paper';
-import { v4 as uuidv4 } from 'uuid';
-import { UserContext } from '../../context/context';
+// import { UserContext } from '../../context/context';
 import { useRealm } from '../../models/Player';
-import { useStore } from '../../store/store';
+// import { useStore } from '../../store/store';
 import ListItem from '../List/ListItem';
 import ListSection from '../List/ListSection';
 import PositionSelector from '../Modal/PositionSelector';
+import { Realm } from '@realm/react';
 const Form = () => {
+	const { UUID } = Realm.BSON;
 	// const user = useContext(UserContext);
 	const realm = useRealm();
 	const [name, setName] = useState('');
@@ -82,13 +83,7 @@ const Form = () => {
 			<View>
 				<ListSection>
 					{players?.map(player => (
-						<ListItem
-							key={uuidv4 + Math.random()}
-							name={player.name}
-							player={player}
-							position={player.position}
-							src={player.uri}
-						/>
+						<ListItem key={new UUID()} name={player.name} player={player} position={player.position} src={player.uri} />
 					))}
 				</ListSection>
 			</View>
