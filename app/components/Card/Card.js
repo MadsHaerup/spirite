@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, Dimensions, Image, Animated, PanResponder, StyleSheet } from 'react-native';
 import CardText from './CardText';
-import { players } from '../../data/players.js';
+// import { players } from '../../data/players.js';
 import { useAttendanceStore } from '../../store/store';
-
+import { UserContext } from '../../context/context';
+import { useQuery } from '../../models/Player';
+import placerholderImage from '../../../assets/images/person.jpg';
 const Card = ({ setCurrentIndex, currentIndex }) => {
 	const increaseAbsence = useAttendanceStore(state => state.increaseAbsence);
 	const increaseAttendance = useAttendanceStore(state => state.increaseAttendance);
 	const SCREEN_WIDTH = Dimensions.get('window').width;
 	const nextCard = () => setCurrentIndex(currentValue => currentValue + 1);
 	const position = new Animated.ValueXY();
+
+	const { userId } = useContext(UserContext);
+	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
+	const players = team.players;
 
 	const panResponder = PanResponder.create({
 		// for Element's Attr
@@ -148,7 +154,7 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 									resizeMode: 'cover',
 									borderRadius: 20,
 								}}
-								source={player.uri}
+								source={player.uri ? { uri: 'data:image/jpeg;base64,' + player.uri } : placerholderImage}
 							/>
 							<CardText>{player.name}</CardText>
 						</Animated.View>

@@ -1,53 +1,40 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Tabs from './app/components/Tabs/Tabs';
-import { playerSchema, RealmProvider } from './app/models/Player';
-import { Realm } from '@realm/react';
-import { UserContext } from './app/context/context';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { RealmProvider } from './app/models/Player';
+import { TeamContext, UserContext } from './app/context/context';
+import { Provider as PaperProvider, Text } from 'react-native-paper';
+import { AppProvider, UserProvider } from '@realm/react';
+import RegisterPage from './app/views/RegisterPage';
+import AccountTabs from './app/components/Tabs/AccountTabs';
 
 export default function App() {
-	const [user, setUser] = useState(null);
+	const [team, setTeam] = useState('');
+	const [userId, setUserId] = useState('');
+	const value = useMemo(() => ({ userId, setUserId }), [userId]);
+	console.log(value);
 
-	useEffect(() => {
-		(async () => {
-			const app = new Realm.App({ id: 'footieswipe-realm-nhnvh' });
-			const credentials = Realm.Credentials.anonymous();
-			try {
-				await app.logIn(credentials);
-				setUser(app.currentUser);
-				const config = {
-					schema: [playerSchema],
-					sync: {
-						user: app.currentUser,
-						flexible: true,
-					},
-				};
-
-				console.log(user, 'user');
-
-				const realm = await Realm.open(config);
-				console.log(realm.subscriptions.state);
-
-				await realm.subscriptions.update(subs => {
-					const players = realm.objects('player');
-					subs.add(players);
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
-
-	return user ? (
-		<PaperProvider>
-			<UserContext.Provider value={user}>
-				<RealmProvider sync={{ user, flexible: true }}>
-					<NavigationContainer>
-						<Tabs />
-					</NavigationContainer>
-				</RealmProvider>
-			</UserContext.Provider>
-		</PaperProvider>
-	) : null;
+	return userId === '' ? (
+		<UserContext.Provider value={value}>
+			<NavigationContainer>
+				<AccountTabs />
+			</NavigationContainer>
+		</UserContext.Provider>
+	) : (
+		<AppProvider id={'footieswipe-realm-nhnvh'}>
+			<UserProvider fallback={RegisterPage}>
+				<PaperProvider>
+					<UserContext.Provider value={value}>
+						<TeamContext.Provider value={team}>
+							<RealmProvider sync={{ flexible: true }}>
+								<NavigationContainer>
+									<Tabs />
+								</NavigationContainer>
+							</RealmProvider>
+						</TeamContext.Provider>
+					</UserContext.Provider>
+				</PaperProvider>
+			</UserProvider>
+		</AppProvider>
+	);
 }
