@@ -13,8 +13,11 @@ const Tabs = () => {
 			initialRouteName="Home"
 			activeColor="#fff"
 			labelStyle={{ fontSize: 12 }}
-			barStyle={{ backgroundColor: '#694fad' }}
-		>
+			// barStyle={{ backgroundColor: '#694fad' }}
+			barStyle={{
+				display: 'flex',
+				backgroundColor: '#694fad',
+			}}>
 			<Tab.Screen
 				name="Swipe"
 				component={Home}
