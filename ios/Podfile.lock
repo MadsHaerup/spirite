@@ -17,7 +17,7 @@ PODS:
   - EXJSONUtils (0.4.0)
   - EXManifests (0.4.0):
     - EXJSONUtils
-  - Expo (47.0.3):
+  - Expo (47.0.8):
     - ExpoModulesCore
   - expo-dev-client (2.0.1):
     - EXManifests
@@ -98,7 +98,7 @@ PODS:
     - ExpoModulesCore
   - ExpoKeepAwake (11.0.1):
     - ExpoModulesCore
-  - ExpoModulesCore (1.0.2):
+  - ExpoModulesCore (1.0.3):
     - React-Core
     - ReactCommon/turbomodule/core
   - EXSharing (11.0.1):
@@ -402,7 +402,7 @@ PODS:
     - React-jsi (= 0.70.5)
     - React-logger (= 0.70.5)
     - React-perflogger (= 0.70.5)
-  - RealmJS (11.2.0):
+  - RealmJS (11.3.0):
     - React
   - RNCMaskedView (0.1.11):
     - React
@@ -650,7 +650,7 @@ SPEC CHECKSUMS:
   EXImageLoader: 84b65e6bd9d3345d6fbb3ab936a546c54496a64d
   EXJSONUtils: 09aef2c1fba1a116ca8c73a2c8299aac00d96b43
   EXManifests: 347f49430b63444579aa013f0ad057d16b8d1cc8
-  Expo: 8e4f1d149b58d5df10d302e0b5c489f9fc6623fc
+  Expo: 36b5f625d36728adbdd1934d4d57182f319ab832
   expo-dev-client: d723d52ccfbe2eb47ee24d1ac0cf5b39001589c2
   expo-dev-launcher: 953f564f7d006f1af50b119cacb48cafcad40c73
   expo-dev-menu: fa9e67b193032700e2908b4737d9d199c0b43c30
@@ -658,7 +658,7 @@ SPEC CHECKSUMS:
   ExpoImageManipulator: 5f3c1ab8dd81de11491b5051bb925abc91fe57e4
   ExpoImagePicker: d2a1cea4023008ae2fb0d95f33422b80772cc76e
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
-  ExpoModulesCore: 20decc110ca3987e1728dee2ce4b3f79e147edda
+  ExpoModulesCore: b5d21c8880afda6fb6ee95469f9ac2ec9b98e995
   EXSharing: e4c5ebc5b36828f1e0dff1415b2b28b23dc770b8
   EXSplashScreen: 3e989924f61a8dd07ee4ea584c6ba14be9b51949
   EXUpdatesInterface: bffd1ead18f0bab04fa784ca159c115607b8a23c
@@ -695,7 +695,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 8e5c8c5d17af641f306d7380d8d0fe9b3c142c48
   React-runtimeexecutor: 7401c4a40f8728fd89df4a56104541b760876117
   ReactCommon: c9246996e73bf75a2c6c3ff15f1e16707cdc2da9
-  RealmJS: d0e94d35363a3a9ebd27981d9ac0aa4b63f66c85
+  RealmJS: 951b827ee81c21da54a7edb9dd355cbb9d330204
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
   RNReanimated: 2a91e85fcd343f8af3c58d3425b99fdd285590a5
@@ -704,6 +704,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: eca980a5771bf114c41a754098cd85e6e0d90ed7
 
-PODFILE CHECKSUM: 3a355c22e0f1792580e5ff5530bcc7c08d49f91f
+PODFILE CHECKSUM: e15e1a40295e4104292c2604c75afef2082accce
 
 COCOAPODS: 1.11.3

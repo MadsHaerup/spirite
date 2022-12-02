@@ -1,33 +1,21 @@
-import * as React from 'react';
-import { Pressable } from 'react-native';
-import { List, Colors } from 'react-native-paper';
-import { useRealm } from '../../models/Player';
+import React, { useContext } from 'react';
+import { List } from 'react-native-paper';
+import { ThemeContext } from '../../context/context';
+import SwipeableItem from './Swipeable';
 
-const ListItem = ({ name, position, id }) => {
-	const realm = useRealm();
-	console.log(id);
+const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId }) => {
+	const { colors } = useContext(ThemeContext);
 	return (
-		<List.Item
-			title={name}
-			description={position}
-			left={props => (
-				<List.Icon {...props} style={{ marginRight: -10 }} color={Colors.purple800} icon="account-circle" />
-			)}
-			right={props => (
-				<Pressable
-					onPress={() => {
-						realm.write(() => {
-							try {
-								realm.delete(realm.objectForPrimaryKey('Player', id));
-							} catch (error) {
-								console.log(error);
-							}
-						});
-					}}>
-					<List.Icon {...props} color={Colors.purple300} icon="delete" />
-				</Pressable>
-			)}
-		/>
+		<SwipeableItem id={id} setVisible={setVisible} setPlayerId={setPlayerId}>
+			<List.Item
+				style={{ backgroundColor: colors.field, borderBottomColor: colors.icons, borderBottomWidth: 1 }}
+				descriptionStyle={{ color: colors.primary }}
+				title={name + ',' + ' ' + age}
+				titleStyle={{ color: colors.primary }}
+				description={position}
+				left={props => <List.Icon {...props} style={{ marginRight: -10 }} color={colors.icons} icon="account-circle" />}
+			/>
+		</SwipeableItem>
 	);
 };
 
