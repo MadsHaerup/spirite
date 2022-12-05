@@ -1,11 +1,16 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { List } from 'react-native-paper';
+import { ThemeContext } from '../../context/context';
 
-const ListSection = ({ children }) => (
-	<List.Section>
-		<List.Subheader>Team Members</List.Subheader>
-		{children}
-	</List.Section>
-);
+const ListSection = ({ children }) => {
+	const { colors } = useContext(ThemeContext);
+
+	return (
+		<List.Section>
+			<List.Subheader style={{ color: colors.primary }}>Team Members</List.Subheader>
+			{children}
+		</List.Section>
+	);
+};
 
 export default ListSection;

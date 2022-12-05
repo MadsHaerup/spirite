@@ -4,6 +4,7 @@ export const PlayerSchema = {
 	name: 'Player',
 	properties: {
 		_id: 'objectId?',
+		age: 'int?',
 		name: 'string?',
 		position: 'string?',
 		team_id: 'objectId?',

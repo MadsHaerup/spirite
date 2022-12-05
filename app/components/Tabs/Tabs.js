@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Home from '../../views/Home';
 import Team from '../../views/Team';
 import Stats from '../../views/Stats';
+import { ThemeContext } from '../../context/context';
 
 const Tabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
+	const { colors } = useContext(ThemeContext);
 
 	return (
 		<Tab.Navigator
 			initialRouteName="Home"
-			activeColor="#fff"
+			activeColor={`${colors.icons}`}
+			inactiveColor={`${colors.inactive}`}
 			labelStyle={{ fontSize: 12 }}
-			// barStyle={{ backgroundColor: '#694fad' }}
+			shifting="true"
 			barStyle={{
 				display: 'flex',
-				backgroundColor: '#694fad',
+				backgroundColor: colors.PrimaryBackground,
 			}}>
 			<Tab.Screen
 				name="Swipe"

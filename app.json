@@ -1,32 +1,37 @@
 {
 	"expo": {
-		"name": "swipeapp",
-		"slug": "swipeapp",
+		"name": "spirite",
+		"slug": "spirite",
 		"version": "1.0.0",
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
-			"bundleIdentifier": "footie.expo.client",
+			"bundleIdentifier": "spirite.expo.client",
 			"supportsTablet": true
 		},
 		"orientation": "portrait",
-		"icon": "./assets/icon.png",
-		"userInterfaceStyle": "light",
+		"icon": "./assets/images/logo.png",
+		"userInterfaceStyle": "dark",
 		"splash": {
-			"image": "./assets/splash.png",
+			"image": "./assets/images/logo.png",
 			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
+			"backgroundColor": "#011E2B"
 		},
 		"updates": {
 			"fallbackToCacheTimeout": 0
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/adaptive-icon.png",
-				"backgroundColor": "#FFFFFF"
+				"foregroundImage": "./assets/adaptive.png",
+				"backgroundColor": "#011E2B"
 			}
 		},
 		"web": {
-			"favicon": "./assets/favicon.png"
+			"favicon": "./assets/favicon-32x32.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "c7810c49-4f25-423a-91fd-c88e1c85fffe"
+			}
 		}
 	}
 }

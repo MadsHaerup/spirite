@@ -1,16 +1,16 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Home from '../../views/Home';
-import RegisterPage from '../../views/RegisterPage';
-import LoginPage from '../../views/LoginPage';
+import SignUp from '../../views/Signup';
+import Login from '../../views/Login';
 
 const AccountTabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
 
 	return (
-		<Tab.Navigator initialRouteName="register-page" barStyle={{ display: 'none' }}>
-			<Tab.Screen name="RegisterPage" component={RegisterPage} />
-			<Tab.Screen name="LoginPage" component={LoginPage} />
+		<Tab.Navigator initialRouteName="sign-up" barStyle={{ display: 'none' }}>
+			<Tab.Screen name="SignUp" component={SignUp} />
+			<Tab.Screen name="Login" component={Login} />
 			<Tab.Screen name="Swipe" component={Home} />
 		</Tab.Navigator>
 	);
