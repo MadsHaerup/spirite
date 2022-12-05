@@ -12,7 +12,6 @@ const Home = () => {
 	const userTeam = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
 	const { colors } = useContext(ThemeContext);
 
-	console.log(currentIndex, userTeam.players.length);
 	return (
 		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
 			<View style={{ height: 20 }} />

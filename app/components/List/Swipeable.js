@@ -26,12 +26,6 @@ export default function SwipeableItem({ children, id, setVisible, setPlayerId })
 				onPress={() => {
 					setVisible(true);
 					setPlayerId(id);
-					// realm.write(() => {
-					// 	const player = realm.objectForPrimaryKey('Player', id);
-					// 	console.log(player);
-					// 	player.name = 'Maximilian';
-					// 	player.age += 1;
-					// });
 				}}>
 				<Animated.Text
 					style={{

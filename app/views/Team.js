@@ -8,8 +8,8 @@ import { ThemeContext, UserContext } from '../context/context';
 import { useQuery, useRealm } from '../models/Player';
 import ImgToBase64 from 'react-native-image-base64-png';
 import TeamList from '../components/TeamList/TeamList';
-import PushMessage from '../components/PushMessage/PushMessage';
 import Edit from '../components/Modal/Edit';
+import Toast from 'react-native-toast-message';
 
 const Team = () => {
 	const realm = useRealm();
@@ -22,14 +22,16 @@ const Team = () => {
 	const [base64Image, setBase64Image] = useState(null);
 	const { colors } = useContext(ThemeContext);
 	const ageNumber = Number(age);
-	const [isVisible, setIsVisible] = useState(false);
 	const [visible, setVisible] = useState(false);
 	const [playerId, setPlayerId] = useState(null);
 
-	if (isVisible) {
-		setTimeout(() => setIsVisible(false), 1500);
-	}
-
+	const showToast = () => {
+		Toast.show({
+			type: 'success',
+			text1: 'Succes',
+			text2: 'Player has been added to the list 👋',
+		});
+	};
 	ImgToBase64.getBase64String(selectedImage)
 		.then(base64String => setBase64Image(base64String))
 		.catch(err => console.log(err));
@@ -94,7 +96,7 @@ const Team = () => {
 							setSelectedImage(null);
 							setPosition('');
 							setAge('');
-							setIsVisible(true);
+							showToast();
 						}
 					}}
 					visible="true"
@@ -110,12 +112,7 @@ const Team = () => {
 				<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
 				<PositionSelector onValueChange={value => setPosition(value)} position={position} />
 			</BottomModal>
-			<PushMessage
-				background={colors.secondaryBackground}
-				color={colors.primary}
-				message="Team player added"
-				state={isVisible}
-			/>
+
 			{visible === true ? (
 				<View style={{ position: 'absolute', width: '100%', height: '100%' }}>
 					<Edit visible={visible} setVisible={setVisible} id={playerId} />

@@ -6,8 +6,8 @@ import { TeamContext, UserContext } from './app/context/context';
 import { AppProvider, UserProvider } from '@realm/react';
 import AccountTabs from './app/components/Tabs/AccountTabs';
 import { StatusBar } from 'expo-status-bar';
-import { RootSiblingParent } from 'react-native-root-siblings';
 import SignUp from './app/views/Signup';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
 	const [team, setTeam] = useState('');
@@ -21,21 +21,20 @@ export default function App() {
 			</NavigationContainer>
 		</UserContext.Provider>
 	) : (
-		<RootSiblingParent>
-			<AppProvider id={'footieswipe-realm-nhnvh'}>
-				<StatusBar style="light" />
-				<UserProvider fallback={SignUp}>
-					<UserContext.Provider value={value}>
-						<TeamContext.Provider value={team}>
-							<RealmProvider sync={{ flexible: true }}>
-								<NavigationContainer>
-									<Tabs />
-								</NavigationContainer>
-							</RealmProvider>
-						</TeamContext.Provider>
-					</UserContext.Provider>
-				</UserProvider>
-			</AppProvider>
-		</RootSiblingParent>
+		<AppProvider id={'footieswipe-realm-nhnvh'}>
+			<StatusBar style="light" />
+			<UserProvider fallback={SignUp}>
+				<UserContext.Provider value={value}>
+					<TeamContext.Provider value={team}>
+						<RealmProvider sync={{ flexible: true }}>
+							<NavigationContainer>
+								<Tabs />
+								<Toast />
+							</NavigationContainer>
+						</RealmProvider>
+					</TeamContext.Provider>
+				</UserContext.Provider>
+			</UserProvider>
+		</AppProvider>
 	);
 }
