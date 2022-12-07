@@ -32,6 +32,19 @@
 			"eas": {
 				"projectId": "c7810c49-4f25-423a-91fd-c88e1c85fffe"
 			}
+		},
+		"plugins": ["sentry-expo"],
+		"hooks": {
+			"postPublish": [
+				{
+					"file": "sentry-expo/upload-sourcemaps",
+					"config": {
+						"organization": "spirite",
+						"project": "Spirite",
+						"authToken": "41dc673707064d49b422a41bfb953ead56afbcca7cf54307867974300a0b2a05"
+					}
+				}
+			]
 		}
 	}
 }

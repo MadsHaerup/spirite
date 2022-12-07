@@ -25,7 +25,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>footie.expo.client</string>
+          <string>spirite.expo.client</string>
         </array>
       </dict>
       <dict>

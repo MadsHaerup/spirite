@@ -1,7 +1,5 @@
 import React, { createContext } from 'react';
 
-export const TeamContext = createContext();
-
 export const UserContext = createContext({
 	userId: '',
 	setUserId: () => {},

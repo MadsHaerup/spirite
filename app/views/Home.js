@@ -14,26 +14,27 @@ const Home = () => {
 
 	return (
 		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
-			<View style={{ height: 20 }} />
+			<View style={{ height: 40 }} />
 
-			{userTeam === undefined ? (
+			{userTeam === undefined && (
 				<View style={{ zIndex: 100, height: '100%', width: '100%', position: 'absolute' }}>
 					<Details />
 				</View>
-			) : null}
+			)}
 
 			<Card setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
 
-			{currentIndex > 0 && userTeam.players.length > 0 && currentIndex == userTeam.players.length ? (
+			{currentIndex > 0 && userTeam?.players?.length > 0 && currentIndex == userTeam.players.length && (
 				<View style={{ flex: 1 }}>
 					<Text style={{ textAlign: 'center', color: colors.primary, fontSize: 24 }}>You are done for today!</Text>
 				</View>
-			) : null}
-			{userTeam.players.length == 0 ? (
+			)}
+
+			{userTeam?.players?.length == 0 && (
 				<View style={{ flex: 1 }}>
 					<Text style={{ textAlign: 'center', color: colors.primary, fontSize: 24 }}>Add players to your team</Text>
 				</View>
-			) : null}
+			)}
 
 			<View
 				style={{
@@ -41,7 +42,7 @@ const Home = () => {
 					paddingRight: 10,
 					alignItems: 'center',
 				}}>
-				{userTeam.players.length == 0 ? null : (
+				{userTeam?.players?.length != 0 && (
 					<Button
 						icon="undo"
 						mode="contained"
@@ -56,7 +57,7 @@ const Home = () => {
 						}}></Button>
 				)}
 			</View>
-			<View style={{ height: 10 }} />
+			<View style={{ height: 20 }} />
 		</View>
 	);
 };

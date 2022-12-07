@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { Modal, Portal, Button, Provider, TextInput, Text, useTheme } from 'react-native-paper';
+import { Modal, Portal, Button, Provider, TextInput, Text } from 'react-native-paper';
 import { Realm } from '@realm/react';
 import { useRealm } from '../../models/Player';
 import { ThemeContext } from '../../context/context';
+import { APP_ID } from '@env';
 
 const Details = () => {
 	const [visible, setVisible] = useState(true);
 	const [team, setTeam] = useState('');
-	const app = new Realm.App({ id: 'footieswipe-realm-nhnvh' });
+	const app = new Realm.App({ id: APP_ID });
 	const realm = useRealm();
-	const showModal = () => setVisible(true);
 	const hideModal = () => setVisible(false);
 	const { colors } = useContext(ThemeContext);
 	const containerStyle = {

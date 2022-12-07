@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Button } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 
-const ImageUpload = ({ selectedImage, setSelectedImage }) => {
+const ImageUpload = ({ selectedImage, setSelectedImage, style }) => {
 	const { colors } = useContext(ThemeContext);
 	const pickImageAsync = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync({
@@ -20,13 +20,13 @@ const ImageUpload = ({ selectedImage, setSelectedImage }) => {
 	};
 
 	return (
-		<View style={{ marginTop: 30, textAlign: 'center', justifyContent: 'center' }}>
+		<View style={{ textAlign: 'center', justifyContent: 'center' }}>
 			<Button
 				color={`${colors.primary}`}
-				style={{ backgroundColor: colors.icons, width: 200, alignSelf: 'center' }}
+				style={{ backgroundColor: colors.icons, ...style, alignSelf: 'center' }}
 				mode="text"
 				onPress={pickImageAsync}>
-				Choose a photo
+				Photo
 			</Button>
 		</View>
 	);

@@ -4,10 +4,11 @@ import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { ThemeContext } from '../../context/context';
 import { useRealm } from '../../models/Player';
-
+import { showToast } from '../../utils/Toast/showToast';
 export default function SwipeableItem({ children, id, setVisible, setPlayerId }) {
 	const { colors } = useContext(ThemeContext);
 	const realm = useRealm();
+	console.log(realm.objectForPrimaryKey('Player', id));
 
 	const renderLeftActions = dragX => {
 		const trans = dragX.interpolate({
@@ -60,6 +61,7 @@ export default function SwipeableItem({ children, id, setVisible, setPlayerId })
 					realm.write(() => {
 						try {
 							realm.delete(realm.objectForPrimaryKey('Player', id));
+							showToast({ type: 'success', title: 'Deletion', body: 'Player has been deleted from list 🗑' });
 						} catch (error) {
 							console.log(error);
 						}

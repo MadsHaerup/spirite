@@ -5,6 +5,7 @@ import Home from '../../views/Home';
 import Team from '../../views/Team';
 import Stats from '../../views/Stats';
 import { ThemeContext } from '../../context/context';
+import Logout from '../../views/Logout';
 
 const Tabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
@@ -22,7 +23,7 @@ const Tabs = () => {
 				backgroundColor: colors.PrimaryBackground,
 			}}>
 			<Tab.Screen
-				name="Swipe"
+				name="Home"
 				component={Home}
 				options={{
 					tabBarLabel: 'Swipe',
@@ -43,6 +44,14 @@ const Tabs = () => {
 				options={{
 					tabBarLabel: 'Stats',
 					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="graph" color={color} size={26} />,
+				}}
+			/>
+			<Tab.Screen
+				name="Logout"
+				component={Logout}
+				options={{
+					tabBarLabel: 'Logout',
+					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="logout" color={color} size={26} />,
 				}}
 			/>
 		</Tab.Navigator>

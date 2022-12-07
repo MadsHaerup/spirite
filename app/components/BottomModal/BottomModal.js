@@ -16,9 +16,7 @@ const BottomModal = ({ children }) => {
 	const handlePresentModalPress = useCallback(() => {
 		bottomSheetModalRef.current?.present();
 	}, []);
-	const handleSheetChanges = useCallback(index => {
-		console.log('handleSheetChanges', index);
-	}, []);
+	const handleSheetChanges = useCallback(index => {}, []);
 
 	// renders
 	return (

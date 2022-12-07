@@ -9,7 +9,7 @@ import { useQuery, useRealm } from '../models/Player';
 import ImgToBase64 from 'react-native-image-base64-png';
 import TeamList from '../components/TeamList/TeamList';
 import Edit from '../components/Modal/Edit';
-import Toast from 'react-native-toast-message';
+import { showToast } from '../utils/Toast/showToast';
 
 const Team = () => {
 	const realm = useRealm();
@@ -25,13 +25,6 @@ const Team = () => {
 	const [visible, setVisible] = useState(false);
 	const [playerId, setPlayerId] = useState(null);
 
-	const showToast = () => {
-		Toast.show({
-			type: 'success',
-			text1: 'Succes',
-			text2: 'Player has been added to the list 👋',
-		});
-	};
 	ImgToBase64.getBase64String(selectedImage)
 		.then(base64String => setBase64Image(base64String))
 		.catch(err => console.log(err));
@@ -56,6 +49,13 @@ const Team = () => {
 			let isnum = !/^\d+$/.test(age);
 			return isnum;
 		}
+	};
+
+	const resetFields = () => {
+		setName('');
+		setSelectedImage(null);
+		setPosition('');
+		setAge('');
 	};
 
 	const verified = () => {
@@ -92,11 +92,8 @@ const Team = () => {
 					onPress={() => {
 						if (verified() == true) {
 							addPlayerToRealm();
-							setName('');
-							setSelectedImage(null);
-							setPosition('');
-							setAge('');
-							showToast();
+							resetFields();
+							showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
 						}
 					}}
 					visible="true"
@@ -109,15 +106,19 @@ const Team = () => {
 					color={`${colors.primary}`}
 				/>
 
-				<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
-				<PositionSelector onValueChange={value => setPosition(value)} position={position} />
+				<ImageUpload
+					selectedImage={selectedImage}
+					setSelectedImage={setSelectedImage}
+					style={{ width: 200, marginBottom: 20 }}
+				/>
+				<PositionSelector onValueChange={value => setPosition(value)} position={position} style={{ width: 200 }} />
 			</BottomModal>
 
-			{visible === true ? (
+			{visible && (
 				<View style={{ position: 'absolute', width: '100%', height: '100%' }}>
 					<Edit visible={visible} setVisible={setVisible} id={playerId} />
 				</View>
-			) : null}
+			)}
 		</View>
 	);
 };

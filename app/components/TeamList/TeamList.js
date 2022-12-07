@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Headline } from 'react-native-paper';
 import { ThemeContext, UserContext } from '../../context/context';
@@ -6,26 +6,29 @@ import { useQuery, useRealm } from '../../models/Player';
 import { Realm } from '@realm/react';
 import ListItem from '../List/ListItem';
 import ListSection from '../List/ListSection';
-import Edit from '../Modal/Edit';
 
 const TeamList = ({ setVisible, setPlayerId }) => {
 	const { UUID } = Realm.BSON;
 	const realm = useRealm();
-	const [players, setPlayers] = useState([]);
+	// const [players, setPlayers] = useState([]);
 	const { userId } = useContext(UserContext);
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
 	const { colors } = useContext(ThemeContext);
 
+	const players = useMemo(() => {
+		return team?.players;
+	}, [team?.players]);
+
 	useEffect(() => {
 		(async () => {
-			const players = team.players;
+			const players = team?.players;
 			// set state to the initial value of your realm objects
-			setPlayers([...players]);
+			// setPlayers([...players]);
 
 			try {
-				players.addListener(() => {
+				players?.addListener(() => {
 					// update state of players to the updated value
-					setPlayers([...players]);
+					// setPlayers([...players]);
 				});
 			} catch (error) {
 				console.error(
@@ -45,7 +48,7 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 					color: colors.primary,
 					fontWeight: 'bold',
 				}}>
-				{team.team_name}
+				{team?.team_name}
 			</Headline>
 
 			<View>
@@ -55,11 +58,11 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 							setPlayerId={setPlayerId}
 							setVisible={setVisible}
 							key={new UUID()}
-							name={player.name}
-							age={player.age}
-							id={player._id}
-							position={player.position}
-							src={player.uri}
+							name={player?.name}
+							age={player?.age}
+							id={player?._id}
+							position={player?.position}
+							src={player?.uri}
 						/>
 					))}
 				</ListSection>

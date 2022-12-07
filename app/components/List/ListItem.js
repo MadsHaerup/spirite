@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { List } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 import SwipeableItem from './Swipeable';
@@ -19,4 +19,4 @@ const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId }) => 
 	);
 };
 
-export default ListItem;
+export default memo(ListItem);
