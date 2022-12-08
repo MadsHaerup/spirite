@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Button, Text, TextInput, HelperText } from 'react-native-paper';
 import { Realm } from '@realm/react';
-import { PlayerSchema, TeamsSchema } from '../models/Player';
+import { PlayerSchema, TeamsSchema } from '../models/model';
 import { ThemeContext, UserContext } from '../context/context';
 import Logo from '../components/Logo/Logo';
 import { storeUser } from '../utils/user/storeUser';

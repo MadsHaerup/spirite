@@ -4,7 +4,7 @@ import Card from '../components/Card/Card';
 import { Button, Text } from 'react-native-paper';
 import Details from '../components/Modal/Details';
 import { ThemeContext, UserContext } from '../context/context';
-import { useQuery } from '../models/Player';
+import { useQuery } from '../models/model';
 
 const Home = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);

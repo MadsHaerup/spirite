@@ -1,7 +1,7 @@
 {
 	"expo": {
 		"name": "spirite",
-		"slug": "spirite",
+		"slug": "swipeapp",
 		"version": "1.0.0",
 		"assetBundlePatterns": ["**/*"],
 		"ios": {

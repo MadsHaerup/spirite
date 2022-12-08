@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput, HelperText } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
-import { useRealm } from '../../models/Player';
+import { useRealm } from '../../models/model';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import PositionSelector from './PositionSelector';
 

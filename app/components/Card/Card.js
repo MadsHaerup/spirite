@@ -3,7 +3,7 @@ import { Text, View, Dimensions, Image, Animated, PanResponder, StyleSheet } fro
 import CardText from './CardText';
 import { useAttendanceStore } from '../../store/store';
 import { UserContext } from '../../context/context';
-import { useQuery } from '../../models/Player';
+import { useQuery } from '../../models/model';
 import placerholderImage from '../../../assets/images/person.jpg';
 const Card = ({ setCurrentIndex, currentIndex }) => {
 	const increaseAbsence = useAttendanceStore(state => state.increaseAbsence);

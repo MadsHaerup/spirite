@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useMemo, useState } from 'react';
 import Tabs from './app/components/Tabs/Tabs';
-import { RealmProvider } from './app/models/Player';
+import { RealmProvider } from './app/models/model';
 import { UserContext } from './app/context/context';
 import { AppProvider, UserProvider } from '@realm/react';
 import AccountTabs from './app/components/Tabs/AccountTabs';
