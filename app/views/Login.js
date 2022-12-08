@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Button, Text, TextInput, HelperText } from 'react-native-paper';
 import { Realm } from '@realm/react';
-import { PlayerSchema, TeamsSchema } from '../models/model';
+import { PlayerSchema, TeamsSchema, EventSchema } from '../models/model';
 import { ThemeContext, UserContext } from '../context/context';
 import Logo from '../components/Logo/Logo';
 import { storeUser } from '../utils/user/storeUser';
@@ -86,15 +86,17 @@ const Login = ({ navigation }) => {
 								setUserId(user.id);
 
 								const realm = await Realm.open({
-									schema: [PlayerSchema, TeamsSchema],
+									schema: [PlayerSchema, TeamsSchema, EventSchema],
 									sync: { user: app.currentUser, flexible: true },
 								});
 								const teams = realm.objects('Teams');
 								const player = realm.objects('Player');
+								const event = realm.objects('Event');
 
 								await realm.subscriptions.update(mutableSubs => {
 									mutableSubs.add(teams);
 									mutableSubs.add(player);
+									mutableSubs.add(event);
 								});
 								console.log(realm.subscriptions.state); // log the subscription state
 

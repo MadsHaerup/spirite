@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useContext, useMemo, useRef, useState } from 'react';
 import { View, Text } from 'react-native';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Fab from '../Fab/Fab';
@@ -8,9 +8,9 @@ import { useQuery, useRealm } from '../../models/model';
 import { showToast } from '../../utils/Toast/showToast';
 import PositionSelector from '../Modal/PositionSelector';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import { base64 } from '../../utils/Base64/Base64';
+import ImgToBase64 from 'react-native-image-base64-png';
 
-const BottomModal = React.forwardRef((props, ref) => {
+const BottomModal = forwardRef((props, ref) => {
 	const realm = useRealm();
 	const { userId } = useContext(UserContext);
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
@@ -22,7 +22,9 @@ const BottomModal = React.forwardRef((props, ref) => {
 	const { colors } = useContext(ThemeContext);
 	const snapPoints = useMemo(() => ['25%', '50%'], []);
 	//transform image to base64 string
-	base64(selectedImage, setBase64Image);
+	ImgToBase64.getBase64String(selectedImage)
+		.then(base64String => setBase64Image(base64String))
+		.catch(err => console.log(err));
 	// ref
 	const bottomSheetModalRef = useRef(ref);
 	const refToTextInput = useRef(null);

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { List } from 'react-native-paper';
+import { List, Text } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 import SwipeableItem from './Swipeable';
 
-const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId }) => {
+const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId, events }) => {
 	const { colors } = useContext(ThemeContext);
 	return (
 		<SwipeableItem id={id} setVisible={setVisible} setPlayerId={setPlayerId}>
@@ -14,6 +14,9 @@ const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId }) => 
 				titleStyle={{ color: colors.primary }}
 				description={position}
 				left={props => <List.Icon {...props} style={{ marginRight: -10 }} color={colors.icons} icon="account-circle" />}
+				right={() => (
+					<Text style={{ marginRight: 10, color: colors.button, alignSelf: 'center' }}>{events.length}</Text>
+				)}
 			/>
 		</SwipeableItem>
 	);

@@ -58,6 +58,7 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 							id={player?._id}
 							position={player?.position}
 							src={player?.uri}
+							events={player.events}
 						/>
 					))}
 				</ListSection>

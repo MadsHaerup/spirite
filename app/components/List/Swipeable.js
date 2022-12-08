@@ -8,7 +8,6 @@ import { showToast } from '../../utils/Toast/showToast';
 export default function SwipeableItem({ children, id, setVisible, setPlayerId }) {
 	const { colors } = useContext(ThemeContext);
 	const realm = useRealm();
-	console.log(realm.objectForPrimaryKey('Player', id));
 
 	const renderLeftActions = dragX => {
 		const trans = dragX.interpolate({

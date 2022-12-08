@@ -53,7 +53,6 @@ const Details = () => {
 							} catch (error) {
 								console.log(error);
 							}
-							console.log('registered');
 							hideModal();
 						}}>
 						Submit

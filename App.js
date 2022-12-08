@@ -28,7 +28,6 @@ function App() {
 		try {
 			const userData = JSON.parse(await AsyncStorage.getItem('user'));
 			if (value !== null) {
-				console.log(userData, 'data');
 				setLoggedIn(userData);
 				setUserId(userData);
 			}
@@ -40,8 +39,6 @@ function App() {
 	useEffect(() => {
 		getUser();
 	}, [loggedIn, userId]);
-
-	console.log(loggedIn, 'logged');
 
 	return (
 		<ErrorBoundary>

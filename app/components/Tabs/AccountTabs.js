@@ -8,7 +8,7 @@ const AccountTabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
 
 	return (
-		<Tab.Navigator initialRouteName="sign-up" barStyle={{ display: 'none' }}>
+		<Tab.Navigator initialRouteName="Login" barStyle={{ display: 'none' }}>
 			<Tab.Screen name="SignUp" component={SignUp} />
 			<Tab.Screen name="Login" component={Login} />
 			<Tab.Screen name="Home" component={Home} />
