@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
-import { BarChart } from 'react-native-chart-kit';
+import { LineChart } from 'react-native-chart-kit';
 import { UserContext } from '../../context/context';
 import { useEvents } from '../../Hooks/useEvents';
 import { useQuery } from '../../models/model';
 import { months } from '../../utils/Month/months';
 
-const Bar = () => {
+const BezierLineChart = () => {
 	const { userId } = useContext(UserContext);
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
-	const events = months.map(month => useEvents(team, month));
 	const SCREEN_WIDTH = Dimensions.get('window').width;
+
+	const events = months.map(month => useEvents(team, month));
+
 	const data = {
 		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-
 		datasets: [
 			{
 				data: [
@@ -32,10 +33,11 @@ const Bar = () => {
 				],
 			},
 		],
+		legend: ['Participation'],
 	};
 
 	return (
-		<BarChart
+		<LineChart
 			fromZero
 			data={data}
 			width={SCREEN_WIDTH}
@@ -46,8 +48,8 @@ const Bar = () => {
 				backgroundGradientTo: '#294861',
 				decimalPlaces: 0,
 				color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-				barPercentage: 0.2,
 			}}
+			bezier
 			style={{
 				marginVertical: 8,
 				borderRadius: 16,
@@ -56,4 +58,4 @@ const Bar = () => {
 	);
 };
 
-export default Bar;
+export default BezierLineChart;

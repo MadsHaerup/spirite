@@ -3,12 +3,13 @@ import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput, HelperText } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 import { useRealm } from '../../models/model';
+import RealmEditPlayer from '../../utils/Realm/RealmEditPlayer';
+import { numberValidation } from '../../utils/validation/numberValidation';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import PositionSelector from './PositionSelector';
 
 const Edit = ({ visible, setVisible, id }) => {
 	const realm = useRealm();
-
 	const player = realm.objectForPrimaryKey('Player', id);
 	const [name, setName] = useState(player.name);
 	const [age, setAge] = useState(player.age.toString());
@@ -17,70 +18,68 @@ const Edit = ({ visible, setVisible, id }) => {
 	const showModal = () => setVisible(true);
 	const hideModal = () => setVisible(false);
 	const { colors } = useContext(ThemeContext);
+
 	const containerStyle = {
 		backgroundColor: colors.PrimaryBackground,
-		padding: 20,
 		borderRadius: 20,
 		marginLeft: 10,
 		marginRight: 10,
 		borderColor: colors.icons,
 		borderWidth: 1,
 		height: '70%',
-	};
-
-	const handlePress = () => {
-		realm.write(() => {
-			player._id = id;
-			player.name = name;
-			player.age = Number(age);
-			player.uri = selectedImage;
-		});
-		hideModal();
-	};
-
-	const hasErrors = () => {
-		if (age.length > 0) {
-			let isnum = !/^\d+$/.test(age);
-			return isnum;
-		}
+		position: 'relative',
 	};
 
 	return (
 		<Provider>
 			<Portal>
 				<Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-					<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
-						Edit Player
-					</Text>
-					<TextInput
-						label="Name"
-						onChangeText={value => setName(value)}
-						activeUnderlineColor={colors.icons}
-						value={name}
-						style={{ backgroundColor: colors.secondary, marginBottom: 20 }}
-						placeholder="type name"
-					/>
-					<TextInput
-						label="Age"
-						keyboardType="numeric"
-						onChangeText={value => setAge(value)}
-						activeUnderlineColor={colors.icons}
-						value={age}
-						style={{ backgroundColor: colors.secondary }}
-						placeholder="type age"
-					/>
-					<HelperText type="error" visible={hasErrors() == undefined ? null : hasErrors()}>
-						Only Use Numbers.
-					</HelperText>
+					<View style={{ padding: 20, paddingBottom: 0 }}>
+						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
+							Edit Player
+						</Text>
+						<TextInput
+							label="Name"
+							onChangeText={value => setName(value)}
+							activeUnderlineColor={colors.icons}
+							value={name}
+							style={{ backgroundColor: colors.secondary, marginBottom: 20 }}
+							placeholder="type name"
+						/>
+						<TextInput
+							label="Age"
+							keyboardType="numeric"
+							onChangeText={value => setAge(value)}
+							activeUnderlineColor={colors.icons}
+							value={age}
+							style={{ backgroundColor: colors.secondary }}
+							placeholder="type age"
+						/>
+						<HelperText type="error" visible={numberValidation(age) == undefined ? null : numberValidation(age)}>
+							Only Use Numbers.
+						</HelperText>
 
-					<View style={{ width: '100%', marginBottom: 20, marginTop: 0 }}>
-						<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: '100%' }} />
+						<View style={{ width: '100%', marginBottom: 20, marginTop: 0 }}>
+							<ImageUpload
+								selectedImage={selectedImage}
+								setSelectedImage={setSelectedImage}
+								style={{ width: '100%' }}
+							/>
+						</View>
 					</View>
-					<PositionSelector onValueChange={value => setPosition(value)} position={position} style={{ width: '100%' }} />
 
-					<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', flex: 1 }}>
+					<View
+						style={{
+							flexDirection: 'row',
+							alignItems: 'center',
+							justifyContent: 'space-around',
+							flex: 1,
+							position: 'absolute',
+							bottom: 20,
+							zIndex: 0,
+							width: '100%',
+						}}>
 						<Button
-							dark="true"
 							style={{
 								width: 120,
 								borderColor: colors.error,
@@ -92,7 +91,6 @@ const Edit = ({ visible, setVisible, id }) => {
 							Cancel
 						</Button>
 						<Button
-							dark="true"
 							style={{
 								width: 120,
 								borderColor: colors.button,
@@ -100,10 +98,18 @@ const Edit = ({ visible, setVisible, id }) => {
 							}}
 							color={`${colors.primary}`}
 							mode="outlined"
-							onPress={() => handlePress()}>
+							onPress={() => {
+								RealmEditPlayer({ realm: realm, player: player, id: id, name: name, age: age, image: selectedImage }),
+									hideModal();
+							}}>
 							Submit
 						</Button>
 					</View>
+					<PositionSelector
+						onValueChange={value => setPosition(value)}
+						position={position}
+						style={{ width: '100%', paddingLeft: 20, paddingRight: 20 }}
+					/>
 				</Modal>
 			</Portal>
 		</Provider>

@@ -5,7 +5,8 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { ThemeContext } from '../../context/context';
 import { useRealm } from '../../models/model';
 import { showToast } from '../../utils/Toast/showToast';
-export default function SwipeableItem({ children, id, setVisible, setPlayerId }) {
+
+const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {
 	const { colors } = useContext(ThemeContext);
 	const realm = useRealm();
 
@@ -84,4 +85,6 @@ export default function SwipeableItem({ children, id, setVisible, setPlayerId })
 			{children}
 		</Swipeable>
 	);
-}
+};
+
+export default SwipeableItem;

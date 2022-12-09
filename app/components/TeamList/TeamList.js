@@ -25,10 +25,9 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 			<Headline
 				style={{
 					textAlign: 'center',
-					marginBottom: 10,
+					marginBottom: 20,
 					color: colors.primary,
 					fontWeight: 'bold',
-					marginTop: 60,
 				}}>
 				{team?.team_name}
 			</Headline>

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import React, { useContext } from 'react';
+import { SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 

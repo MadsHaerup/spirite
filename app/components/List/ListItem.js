@@ -15,7 +15,7 @@ const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId, event
 				description={position}
 				left={props => <List.Icon {...props} style={{ marginRight: -10 }} color={colors.icons} icon="account-circle" />}
 				right={() => (
-					<Text style={{ marginRight: 10, color: colors.button, alignSelf: 'center' }}>{events.length}</Text>
+					<Text style={{ marginRight: 10, color: colors.button, alignSelf: 'center' }}>{events.length} ⚽️ </Text>
 				)}
 			/>
 		</SwipeableItem>

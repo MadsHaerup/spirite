@@ -9,6 +9,8 @@ import { showToast } from '../../utils/Toast/showToast';
 import PositionSelector from '../Modal/PositionSelector';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import ImgToBase64 from 'react-native-image-base64-png';
+import { numberValidation } from '../../utils/validation/numberValidation';
+import RealmAddPlayer from '../../utils/Realm/RealmAddPlayer';
 
 const BottomModal = forwardRef((props, ref) => {
 	const realm = useRealm();
@@ -36,28 +38,6 @@ const BottomModal = forwardRef((props, ref) => {
 		refToTextInput.current?.focus();
 	}, []);
 
-	const addPlayerToRealm = () => {
-		realm.write(() => {
-			team?.players?.push(
-				realm.create('Player', {
-					_id: new Realm.BSON.ObjectId(),
-					name: name,
-					position: position,
-					team_name: team.team_name,
-					uri: base64Image,
-					age: Number(age),
-				})
-			);
-		});
-	};
-
-	const hasErrors = () => {
-		if (age.length > 0) {
-			let isnum = !/^\d+$/.test(age);
-			return isnum;
-		}
-	};
-
 	const resetFields = () => {
 		setName('');
 		setSelectedImage(null);
@@ -66,7 +46,7 @@ const BottomModal = forwardRef((props, ref) => {
 	};
 
 	const verified = () => {
-		return name.length > 0 && age.length > 0 && hasErrors() == false && position != '';
+		return name.length > 0 && age.length > 0 && numberValidation(age) == false && position != '';
 	};
 
 	// renders
@@ -104,7 +84,7 @@ const BottomModal = forwardRef((props, ref) => {
 							style={{ backgroundColor: colors.primary }}
 							placeholder="type age"
 						/>
-						<HelperText type="error" visible={hasErrors() == undefined ? null : hasErrors()}>
+						<HelperText type="error" visible={numberValidation(age) == undefined ? null : numberValidation(age)}>
 							Only Use Numbers.
 						</HelperText>
 
@@ -112,7 +92,15 @@ const BottomModal = forwardRef((props, ref) => {
 							icon={verified() == true ? 'check' : 'alert-circle-outline'}
 							onPress={() => {
 								if (verified() == true) {
-									addPlayerToRealm();
+									RealmAddPlayer({
+										realm: realm,
+										team: team,
+										objectId: new Realm.BSON.ObjectId(),
+										name: name,
+										position: position,
+										base64Image: base64Image,
+										age: age,
+									});
 									resetFields();
 									showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
 								}

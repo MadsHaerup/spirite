@@ -4,6 +4,7 @@ import { Realm } from '@realm/react';
 import { useRealm } from '../../models/model';
 import { ThemeContext } from '../../context/context';
 import { APP_ID } from '@env';
+import RealmCreateTeam from '../../utils/Realm/RealmCreateTeam';
 
 const Details = () => {
 	const [visible, setVisible] = useState(true);
@@ -39,17 +40,23 @@ const Details = () => {
 					<Button
 						style={{ margin: 10, width: 120, alignSelf: 'flex-end', backgroundColor: colors.button }}
 						mode="contained"
-						onPress={async () => {
+						onPress={() => {
 							try {
-								realm.write(() => {
-									// the following tasks will trigger the change listener and update the UI
-									realm.create('Teams', {
-										_id: new Realm.BSON.ObjectId(),
-										team_name: team,
-										user_id: app.currentUser.id,
-									});
-									setTeam(team);
+								// realm.write(() => {
+								// 	realm.create('Teams', {
+								// 		_id: new Realm.BSON.ObjectId(),
+								// 		team_name: team,
+								// 		user_id: app.currentUser.id,
+								// 	});
+								// 	setTeam(team);
+								// });
+								RealmCreateTeam({
+									realm: realm,
+									objectId: new Realm.BSON.ObjectId(),
+									team: team,
+									userID: app.currentUser.id,
 								});
+								setTeam(team);
 							} catch (error) {
 								console.log(error);
 							}

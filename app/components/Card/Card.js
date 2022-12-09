@@ -6,6 +6,7 @@ import { UserContext } from '../../context/context';
 import { useQuery, useRealm } from '../../models/model';
 import placerholderImage from '../../../assets/images/person.jpg';
 import { Realm } from '@realm/react';
+import RealmAddEvent from '../../utils/Realm/RealmAddEvent';
 
 const Card = ({ setCurrentIndex, currentIndex }) => {
 	const realm = useRealm();
@@ -18,17 +19,6 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
 	const players = team?.players;
 
-	const addEventToRealm = () => {
-		realm.write(() => {
-			team?.players[currentIndex]?.events.push(
-				realm.create('Event', {
-					_id: new Realm.BSON.ObjectId(),
-					date: new Date(),
-				})
-			);
-		});
-	};
-
 	const panResponder = PanResponder.create({
 		// for Element's Attr
 		onStartShouldSetPanResponder: () => true,
@@ -39,7 +29,7 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 		onPanResponderRelease: (evt, { dx, dy }) => {
 			// Release Event
 			if (dx >= 150) {
-				addEventToRealm();
+				RealmAddEvent({ realm: realm, team: team, index: currentIndex, objectId: new Realm.BSON.ObjectId() });
 				// Swpied right side
 				Animated.spring(position, {
 					toValue: { x: SCREEN_WIDTH + 100, y: dy },

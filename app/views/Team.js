@@ -11,11 +11,9 @@ const Team = () => {
 	const [playerId, setPlayerId] = useState(null);
 
 	return (
-		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
+		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
 			<TeamList setVisible={setVisible} setPlayerId={setPlayerId} />
-
 			<BottomModal />
-
 			{visible && (
 				<View style={{ position: 'absolute', width: '100%', height: '100%' }}>
 					<Edit visible={visible} setVisible={setVisible} id={playerId} />

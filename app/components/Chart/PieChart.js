@@ -5,7 +5,6 @@ import { useAttendanceStore } from '../../store/store';
 const Pie = () => {
 	const attendance = useAttendanceStore(state => state.attendance);
 	const absence = useAttendanceStore(state => state.absence);
-	// const SCREEN_HEIGHT = Dimensions.get('window').height;
 	const SCREEN_WIDTH = Dimensions.get('window').width;
 
 	return (
@@ -14,15 +13,15 @@ const Pie = () => {
 				{
 					name: 'Absence',
 					attendance: absence,
-					color: '#8980F5',
-					legendFontColor: '#7F7F7F',
+					color: '#87A3A3',
+					legendFontColor: '#fff',
 					legendFontSize: 15,
 				},
 				{
 					name: 'Attendance',
 					attendance: attendance,
-					color: '#3B3561',
-					legendFontColor: '#7F7F7F',
+					color: '#AC8D9A',
+					legendFontColor: '#fff',
 					legendFontSize: 15,
 				},
 			]}
@@ -30,10 +29,10 @@ const Pie = () => {
 			height={220}
 			chartConfig={{
 				backgroundColor: '#1cc910',
-				backgroundGradientFrom: '#eff3ff',
-				backgroundGradientTo: '#efefef',
+				backgroundGradientFrom: '#0E1C26',
+				backgroundGradientTo: '#294861',
 				decimalPlaces: 2,
-				color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+				color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
 				style: {
 					borderRadius: 16,
 				},
