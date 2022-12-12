@@ -6,6 +6,7 @@ import Team from '../../views/Team';
 import Stats from '../../views/Stats';
 import { ThemeContext } from '../../context/context';
 import Logout from '../../views/Logout';
+import Formation from '../../views/Formation';
 
 const Tabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
@@ -43,7 +44,15 @@ const Tabs = () => {
 				component={Stats}
 				options={{
 					tabBarLabel: 'Stats',
-					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="graph" color={color} size={26} />,
+					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="poll" color={color} size={26} />,
+				}}
+			/>
+			<Tab.Screen
+				name="Formation"
+				component={Formation}
+				options={{
+					tabBarLabel: 'Lineup',
+					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="soccer-field" color={color} size={26} />,
 				}}
 			/>
 			<Tab.Screen

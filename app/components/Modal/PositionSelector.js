@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
-import { Button, RadioButton, Dialog, Portal, Provider, Text } from 'react-native-paper';
+import { Button, RadioButton, Dialog, Portal, Provider } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 const PositionSelector = ({ onValueChange, position, style }) => {
 	const [visible, setVisible] = useState(false);
