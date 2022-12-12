@@ -5,12 +5,17 @@ import { Button, Text } from 'react-native-paper';
 import Details from '../components/Modal/Details';
 import { ThemeContext, UserContext } from '../context/context';
 import { useQuery } from '../models/model';
+import PrimaryBtn from '../components/PrimaryBtn/PrimaryBtn';
 
 const Home = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const { userId } = useContext(UserContext);
 	const userTeam = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
 	const { colors } = useContext(ThemeContext);
+
+	const revert = () => {
+		setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex);
+	};
 
 	return (
 		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
@@ -42,20 +47,7 @@ const Home = () => {
 					paddingRight: 10,
 					alignItems: 'center',
 				}}>
-				{userTeam?.players?.length != 0 && (
-					<Button
-						icon="undo"
-						mode="contained"
-						onPress={() => setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex)}
-						labelStyle={{ fontSize: 20 }}
-						style={{
-							borderRadius: 999,
-							width: '100%',
-							backgroundColor: colors.button,
-							justifyContent: 'center',
-							alignSelf: 'center',
-						}}></Button>
-				)}
+				{userTeam?.players?.length != 0 && <PrimaryBtn icon="undo" handlePress={revert} style={{ borderRadius: 20 }} />}
 			</View>
 			<View style={{ height: 20 }} />
 		</View>

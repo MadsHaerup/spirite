@@ -43,6 +43,7 @@ const BezierLineChart = () => {
 			width={SCREEN_WIDTH}
 			height={220}
 			yAxisLabel={''}
+			segments={2}
 			chartConfig={{
 				backgroundGradientFrom: '#0E1C26',
 				backgroundGradientTo: '#294861',

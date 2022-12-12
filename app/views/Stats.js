@@ -4,6 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Headline } from 'react-native-paper';
 import Bar from '../components/Chart/BarChart';
 import BezierLineChart from '../components/Chart/BezierLineChart';
+import Contribution from '../components/Chart/Contribution';
 import Pie from '../components/Chart/PieChart';
 import { ThemeContext } from '../context/context';
 import { useAttendanceStore } from '../store/store';
@@ -18,6 +19,7 @@ const Stats = () => {
 				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Team Stats</Headline>
 				<BezierLineChart />
 				<Bar />
+				<Contribution />
 				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Daily stats</Headline>
 				<View style={{ flexDirection: 'row' }}>
 					<Text style={{ marginRight: 10, color: colors.primary }}>Attendance: {attendance}</Text>

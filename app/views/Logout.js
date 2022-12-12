@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper';
 import { ThemeContext, UserContext } from '../context/context';
 import { useApp } from '@realm/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PrimaryBtn from '../components/PrimaryBtn/PrimaryBtn';
 
 const Logout = () => {
 	const { colors } = useContext(ThemeContext);
@@ -22,15 +23,15 @@ const Logout = () => {
 	};
 
 	return (
-		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, justifyContent: 'center' }}>
-			<Button
-				style={{ backgroundColor: colors.button, marginLeft: 20, marginRight: 20 }}
-				mode="contained"
-				dark="true"
-				contentStyle={{ color: 'black' }}
-				onPress={() => logoutUser()}>
-				Log out
-			</Button>
+		<View
+			style={{
+				flex: 1,
+				backgroundColor: colors.PrimaryBackground,
+				justifyContent: 'center',
+				paddingLeft: 20,
+				paddingRight: 20,
+			}}>
+			<PrimaryBtn handlePress={logoutUser} content="Log out" />
 		</View>
 	);
 };

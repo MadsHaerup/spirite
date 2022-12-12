@@ -13,14 +13,14 @@ const Pie = () => {
 				{
 					name: 'Absence',
 					attendance: absence,
-					color: '#87A3A3',
+					color: '#AC8D9A',
 					legendFontColor: '#fff',
 					legendFontSize: 15,
 				},
 				{
 					name: 'Attendance',
 					attendance: attendance,
-					color: '#AC8D9A',
+					color: '#87A3A3',
 					legendFontColor: '#fff',
 					legendFontSize: 15,
 				},

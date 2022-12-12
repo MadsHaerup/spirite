@@ -28,9 +28,9 @@ export const useEvents = (team, month) => {
 				});
 			})
 			.filter(event => event.length > 0)
-			.map(event => event.length)
-			.reduce((a, b) => a + b, 0);
+			.map(event => event.length);
 	}, [team]);
 
-	return events;
+	const sum = events.reduce((a, b) => a + b, 0);
+	return sum;
 };

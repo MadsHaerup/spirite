@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart';
 import { Button } from 'react-native-paper';
+import PrimaryBtn from '../PrimaryBtn/PrimaryBtn';
 
 export class ErrorBoundary extends React.Component {
 	state = {
@@ -39,14 +40,12 @@ export class ErrorBoundary extends React.Component {
 							Press the button below to restart the app and sign back in. Please contact us if this issue persists.
 						</Text>
 
-						<Button
-							style={{ marginVertical: 15, backgroundColor: '#08D05B' }}
-							contentStyle={{ color: '#fff' }}
+						<PrimaryBtn
 							icon="login"
-							mode="contained"
-							onPress={() => this.handleBackToSignIn()}>
-							Back to Sign In Screen
-						</Button>
+							handlePress={this.handleBackToSignIn}
+							style={{ marginVertical: 15 }}
+							content="Back to Sign In Screen"
+						/>
 					</View>
 				</SafeAreaView>
 			);

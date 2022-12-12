@@ -158,6 +158,8 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 											height: '100%',
 											width: '100%',
 											resizeMode: 'cover',
+											borderTopLeftRadius: 20,
+											borderTopRightRadius: 20,
 											borderRadius: 20,
 										}}
 										source={player.uri ? { uri: 'data:image/jpeg;base64,' + player.uri } : placerholderImage}
