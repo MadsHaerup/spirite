@@ -9,7 +9,7 @@ const Team = () => {
 	const { colors } = useContext(ThemeContext);
 	const [visible, setVisible] = useState(false);
 	const [playerId, setPlayerId] = useState(null);
-
+	console.log(playerId);
 	return (
 		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
 			<TeamList setVisible={setVisible} setPlayerId={setPlayerId} />

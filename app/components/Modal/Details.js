@@ -42,14 +42,6 @@ const Details = () => {
 						mode="contained"
 						onPress={() => {
 							try {
-								// realm.write(() => {
-								// 	realm.create('Teams', {
-								// 		_id: new Realm.BSON.ObjectId(),
-								// 		team_name: team,
-								// 		user_id: app.currentUser.id,
-								// 	});
-								// 	setTeam(team);
-								// });
 								RealmCreateTeam({
 									realm: realm,
 									objectId: new Realm.BSON.ObjectId(),
