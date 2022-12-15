@@ -2,20 +2,15 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Button, RadioButton, Dialog, Portal, Provider } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
-const PositionSelector = ({ onValueChange, position, style }) => {
-	const [visible, setVisible] = useState(false);
-	const showDialog = () => setVisible(true);
-	const hideDialog = () => setVisible(false);
+const PositionSelector = ({ onValueChange, position, style, isDialogOpen, setIsDialogOpen }) => {
+	const hideDialog = () => setIsDialogOpen(false);
 	const { colors } = useContext(ThemeContext);
 
 	return (
 		<Provider>
 			<View style={{ ...style, alignSelf: 'center' }}>
-				<Button color={`${colors.primary}`} style={{ backgroundColor: colors.icons }} onPress={showDialog}>
-					Position
-				</Button>
 				<Portal>
-					<Dialog visible={visible} onDismiss={hideDialog} style={{ backgroundColor: colors.primary, bottom: 0 }}>
+					<Dialog visible={isDialogOpen} onDismiss={hideDialog} style={{ backgroundColor: colors.primary, bottom: 0 }}>
 						<Dialog.Title>Positions</Dialog.Title>
 						<Dialog.Content style={{ backgroundColor: colors.primary }}>
 							<RadioButton.Group onValueChange={onValueChange} value={position}>

@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput, HelperText } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
-import { useRealm } from '../../models/model';
+import { useRealm } from '../../context/realmContext';
 import RealmEditPlayer from '../../utils/Realm/RealmEditPlayer';
 import { numberValidation } from '../../utils/validation/numberValidation';
 import ImageUpload from '../ImageUpload/ImageUpload';
+import PrimaryBtn from '../PrimaryBtn/PrimaryBtn';
 import PositionSelector from './PositionSelector';
 
 const Edit = ({ visible, setVisible, id }) => {
@@ -19,6 +20,9 @@ const Edit = ({ visible, setVisible, id }) => {
 	const hideModal = () => setVisible(false);
 	const { colors } = useContext(ThemeContext);
 
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const showDialog = () => setIsDialogOpen(true);
+
 	const containerStyle = {
 		backgroundColor: colors.PrimaryBackground,
 		borderRadius: 20,
@@ -26,15 +30,14 @@ const Edit = ({ visible, setVisible, id }) => {
 		marginRight: 10,
 		borderColor: colors.icons,
 		borderWidth: 1,
-		height: '70%',
-		position: 'relative',
+		justifyContent: 'flex-start',
 	};
 
 	return (
 		<Provider>
 			<Portal>
 				<Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-					<View style={{ padding: 20, paddingBottom: 0 }}>
+					<View style={{ padding: 20, paddingBottom: 20 }}>
 						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
 							Edit Player
 						</Text>
@@ -59,11 +62,17 @@ const Edit = ({ visible, setVisible, id }) => {
 							Only Use Numbers.
 						</HelperText>
 
-						<View style={{ width: '100%', marginBottom: 20, marginTop: 0 }}>
-							<ImageUpload
-								selectedImage={selectedImage}
-								setSelectedImage={setSelectedImage}
-								style={{ width: '100%' }}
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'space-between',
+								alignItems: 'center',
+							}}>
+							<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
+							<PrimaryBtn
+								style={{ backgroundColor: colors.icons, width: 150 }}
+								handlePress={showDialog}
+								content="Position"
 							/>
 						</View>
 					</View>
@@ -72,16 +81,14 @@ const Edit = ({ visible, setVisible, id }) => {
 						style={{
 							flexDirection: 'row',
 							alignItems: 'center',
-							justifyContent: 'space-around',
-							flex: 1,
-							position: 'absolute',
-							bottom: 20,
-							zIndex: 0,
+							justifyContent: 'space-between',
 							width: '100%',
+							padding: 20,
+							paddingTop: 0,
 						}}>
 						<Button
 							style={{
-								width: 120,
+								width: 150,
 								borderColor: colors.error,
 								color: colors.secondary,
 							}}
@@ -92,7 +99,7 @@ const Edit = ({ visible, setVisible, id }) => {
 						</Button>
 						<Button
 							style={{
-								width: 120,
+								width: 150,
 								borderColor: colors.button,
 								color: colors.secondary,
 							}}
@@ -105,7 +112,11 @@ const Edit = ({ visible, setVisible, id }) => {
 							Submit
 						</Button>
 					</View>
+
 					<PositionSelector
+						isDialogOpen={isDialogOpen}
+						setIsDialogOpen={setIsDialogOpen}
+						showDialog={showDialog}
 						onValueChange={value => setPosition(value)}
 						position={position}
 						style={{ width: '100%', paddingLeft: 20, paddingRight: 20 }}

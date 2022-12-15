@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
+import ListOfPlayers from '../ListOfPlayers/ListOfPlayers';
 
-const PlayerSelector = ({ isEditing, setIsEditing, player, onChange }) => {
-	const [name, setName] = useState(player.name);
+const PlayerSelector = ({ isEditing, setIsEditing, player, onChange, fetchData }) => {
 	const showModal = () => setIsEditing(true);
 	const hideModal = () => setIsEditing(false);
 	const { colors } = useContext(ThemeContext);
@@ -20,27 +20,15 @@ const PlayerSelector = ({ isEditing, setIsEditing, player, onChange }) => {
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
 	};
-
 	return (
 		<Provider>
 			<Portal>
 				<Modal visible={isEditing} onDismiss={hideModal} contentContainerStyle={containerStyle}>
 					<View style={{ padding: 20, paddingBottom: 0 }}>
 						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
-							Edit Player
+							Select a player
 						</Text>
-						<TextInput
-							style={{ width: '100%', marginBottom: 20, height: 40 }}
-							activeUnderlineColor={colors.icons}
-							value={name}
-							onChangeText={name => {
-								setName(name),
-									onChange({
-										...player,
-										name: name,
-									});
-							}}
-						/>
+						<ListOfPlayers onChange={onChange} player={player} fetchData={fetchData} />
 					</View>
 
 					<View

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import Card from '../components/Card/Card';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import Details from '../components/Modal/Details';
 import { ThemeContext, UserContext } from '../context/context';
-import { useQuery } from '../models/model';
 import PrimaryBtn from '../components/PrimaryBtn/PrimaryBtn';
+import { useQuery } from '../context/realmContext';
 
 const Home = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,7 +47,9 @@ const Home = () => {
 					paddingRight: 10,
 					alignItems: 'center',
 				}}>
-				{userTeam?.players?.length != 0 && <PrimaryBtn icon="undo" handlePress={revert} style={{ borderRadius: 20 }} />}
+				{userTeam?.players?.length != 0 && (
+					<PrimaryBtn icon="undo" handlePress={revert} style={{ borderRadius: 20, width: '100%' }} />
+				)}
 			</View>
 			<View style={{ height: 20 }} />
 		</View>

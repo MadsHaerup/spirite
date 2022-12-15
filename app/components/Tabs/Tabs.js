@@ -5,8 +5,8 @@ import Home from '../../views/Home';
 import Team from '../../views/Team';
 import Stats from '../../views/Stats';
 import { ThemeContext } from '../../context/context';
-import Logout from '../../views/Logout';
 import Formation from '../../views/Formation';
+import Settings from '../../views/Settings';
 
 const Tabs = () => {
 	const Tab = createMaterialBottomTabNavigator();
@@ -36,7 +36,7 @@ const Tabs = () => {
 				component={Team}
 				options={{
 					tabBarLabel: 'Team',
-					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="human" color={color} size={26} />,
+					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="account-multiple-plus" color={color} size={26} />,
 				}}
 			/>
 			<Tab.Screen
@@ -57,10 +57,10 @@ const Tabs = () => {
 			/>
 			<Tab.Screen
 				name="Logout"
-				component={Logout}
+				component={Settings}
 				options={{
-					tabBarLabel: 'Logout',
-					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="logout" color={color} size={26} />,
+					tabBarLabel: 'Settings',
+					tabBarIcon: ({ color }) => <MaterialCommunityIcons name="cog-outline" color={color} size={26} />,
 				}}
 			/>
 		</Tab.Navigator>

@@ -8,9 +8,7 @@ const Lineup = () => {
 	const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Team />
-
+		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
 			<ImageBackground
 				source={require('../../../assets/images/field.png')}
 				resizeMode="contain"
@@ -19,6 +17,7 @@ const Lineup = () => {
 					width: SCREEN_HEIGHT,
 					height: SCREEN_WIDTH,
 				}}></ImageBackground>
+			<Team />
 		</View>
 	);
 };

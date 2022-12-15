@@ -3,21 +3,21 @@ import { SafeAreaView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 
-const Fab = ({ handlePress }) => {
+const Fab = ({ handlePress, icon, label, color, style }) => {
 	const { colors } = useContext(ThemeContext);
 
 	return (
 		<SafeAreaView style={{ flexGrow: 1 }}>
 			<FAB
-				icon={'plus'}
-				label={'Add'}
+				icon={icon}
+				label={label}
 				onPress={() => {
 					handlePress();
 				}}
 				visible="true"
 				iconMode={'static'}
-				style={{ bottom: 16, right: 16, position: 'absolute', backgroundColor: colors.icons }}
-				color={`${colors.primary}`}
+				style={{ ...style, bottom: 16, right: 16, position: 'absolute' }}
+				color={color ? color : `${colors.primary}`}
 			/>
 		</SafeAreaView>
 	);

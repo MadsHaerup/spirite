@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { ThemeContext } from '../../context/context';
-import { useRealm } from '../../models/model';
+import { useRealm } from '../../context/realmContext';
 import { showToast } from '../../utils/Toast/showToast';
 
 const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {

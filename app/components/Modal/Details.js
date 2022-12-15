@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Modal, Portal, Button, Provider, TextInput, Text } from 'react-native-paper';
 import { Realm } from '@realm/react';
-import { useRealm } from '../../models/model';
 import { ThemeContext } from '../../context/context';
 import { APP_ID } from '@env';
 import RealmCreateTeam from '../../utils/Realm/RealmCreateTeam';
+import { useRealm } from '../../context/realmContext';
 
 const Details = () => {
 	const [visible, setVisible] = useState(true);

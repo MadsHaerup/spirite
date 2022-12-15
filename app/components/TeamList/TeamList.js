@@ -2,10 +2,10 @@ import { useContext, useMemo, useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Headline, TextInput } from 'react-native-paper';
 import { ThemeContext, UserContext } from '../../context/context';
-import { useQuery } from '../../models/model';
 import { Realm } from '@realm/react';
 import ListItem from '../List/ListItem';
 import ListSection from '../List/ListSection';
+import { useQuery } from '../../context/realmContext';
 
 const TeamList = ({ setVisible, setPlayerId }) => {
 	const [search, setSearch] = useState('');

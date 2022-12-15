@@ -1,25 +1,42 @@
 import { useContext } from 'react';
-import { View } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { ThemeContext } from '../../context/context';
 
-const Player = ({ player, setActivePlayer, setIsEditing }) => {
+const Player = ({ player, setActivePlayer, setIsEditing, i }) => {
 	const { colors } = useContext(ThemeContext);
-	let playerContent;
-	playerContent = (
-		<View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-			<Button
-				color={`${'white'}`}
-				style={{ backgroundColor: colors.icons, color: colors.primary, borderRadius: 20 }}
-				mode="outlined"
+	return (
+		<View
+			style={{
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
+				width: 100,
+				overflow: 'hidden',
+			}}>
+			<TouchableWithoutFeedback
 				onPress={() => {
 					setIsEditing(true), setActivePlayer(player);
 				}}>
-				{player.name ? player.name : '+'}
-			</Button>
+				<View style={{ flexDirection: 'column', alignItems: 'center' }}>
+					<Image
+						style={{
+							flex: 1,
+							height: 50,
+							width: 50,
+							resizeMode: 'contain',
+						}}
+						source={require('../../../assets/images/player.png')}
+					/>
+					<Text
+						style={{
+							color: colors.primary,
+							fontSize: 12,
+						}}>
+						{player.name ? player.name.split(' ').pop() : '+'}
+					</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		</View>
 	);
-	return <Text>{playerContent}</Text>;
 };
-
 export default Player;

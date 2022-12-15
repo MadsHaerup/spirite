@@ -1,5 +1,3 @@
-import { createRealmContext } from '@realm/react';
-
 export const PlayerSchema = {
 	name: 'Player',
 	properties: {
@@ -46,8 +44,3 @@ export const TeamsSchema = {
 	},
 	primaryKey: '_id',
 };
-
-export const { useRealm, useQuery, useObject, RealmProvider } = createRealmContext({
-	schema: [TeamsSchema, PlayerSchema, EventSchema],
-	deleteRealmIfMigrationNeeded: true,
-});

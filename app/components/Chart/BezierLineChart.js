@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { UserContext } from '../../context/context';
+import { useQuery } from '../../context/realmContext';
 import { useEvents } from '../../Hooks/useEvents';
-import { useQuery } from '../../models/model';
 import { months } from '../../utils/Month/months';
 
 const BezierLineChart = () => {

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { ContributionGraph } from 'react-native-chart-kit';
 import { ScrollView } from 'react-native-gesture-handler';
 import { UserContext } from '../../context/context';
-import { useQuery } from '../../models/model';
+import { useQuery } from '../../context/realmContext';
 
 const Contribution = () => {
 	const { userId } = useContext(UserContext);

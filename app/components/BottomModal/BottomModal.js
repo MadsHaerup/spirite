@@ -3,14 +3,14 @@ import { View, Text } from 'react-native';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Fab from '../Fab/Fab';
 import { ThemeContext, UserContext } from '../../context/context';
-import { FAB, TextInput, HelperText } from 'react-native-paper';
-import { useQuery, useRealm } from '../../models/model';
+import { FAB, TextInput, HelperText, Button } from 'react-native-paper';
 import { showToast } from '../../utils/Toast/showToast';
 import PositionSelector from '../Modal/PositionSelector';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import ImgToBase64 from 'react-native-image-base64-png';
 import { numberValidation } from '../../utils/validation/numberValidation';
 import RealmAddPlayer from '../../utils/Realm/RealmAddPlayer';
+import { useQuery, useRealm } from '../../context/realmContext';
 
 const BottomModal = forwardRef((props, ref) => {
 	const realm = useRealm();
@@ -23,6 +23,10 @@ const BottomModal = forwardRef((props, ref) => {
 	const [selectedImage, setSelectedImage] = useState(null);
 	const { colors } = useContext(ThemeContext);
 	const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const showDialog = () => setIsDialogOpen(true);
+
 	//transform image to base64 string
 	ImgToBase64.getBase64String(selectedImage)
 		.then(base64String => setBase64Image(base64String))
@@ -53,7 +57,7 @@ const BottomModal = forwardRef((props, ref) => {
 	return (
 		<BottomSheetModalProvider>
 			<View>
-				<Fab handlePress={handlePresentModalPress} />
+				<Fab handlePress={handlePresentModalPress} label="ADD" icon="plus" style={{ backgroundColor: colors.button }} />
 				<BottomSheetModal ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
 					<View style={{ flex: 1 }}>
 						<Text
@@ -115,12 +119,28 @@ const BottomModal = forwardRef((props, ref) => {
 							}
 						/>
 
-						<ImageUpload
-							selectedImage={selectedImage}
-							setSelectedImage={setSelectedImage}
-							style={{ width: 200, marginBottom: 20 }}
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'space-evenly',
+								alignItems: 'center',
+							}}>
+							<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
+							<Button
+								color={`${colors.primary}`}
+								style={{ backgroundColor: colors.icons, width: 150 }}
+								onPress={showDialog}>
+								Position
+							</Button>
+						</View>
+
+						<PositionSelector
+							isDialogOpen={isDialogOpen}
+							setIsDialogOpen={setIsDialogOpen}
+							onValueChange={value => setPosition(value)}
+							position={position}
+							style={{ width: 200 }}
 						/>
-						<PositionSelector onValueChange={value => setPosition(value)} position={position} style={{ width: 200 }} />
 					</View>
 				</BottomSheetModal>
 			</View>

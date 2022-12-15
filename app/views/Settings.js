@@ -6,8 +6,8 @@ import { useApp } from '@realm/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PrimaryBtn from '../components/PrimaryBtn/PrimaryBtn';
 
-const Logout = () => {
-	const { colors } = useContext(ThemeContext);
+const Settings = () => {
+	const { colors, toggleTheme } = useContext(ThemeContext);
 	const app = useApp();
 	const { setUserId } = useContext(UserContext);
 	const logoutUser = () => {
@@ -31,9 +31,10 @@ const Logout = () => {
 				paddingLeft: 20,
 				paddingRight: 20,
 			}}>
-			<PrimaryBtn handlePress={logoutUser} content="Log out" />
+			<PrimaryBtn handlePress={logoutUser} content="Log out" style={{ width: '100%' }} />
+			<PrimaryBtn handlePress={toggleTheme} content="Change theme" style={{ width: '100%', marginTop: 20 }} />
 		</View>
 	);
 };
 
-export default Logout;
+export default Settings;

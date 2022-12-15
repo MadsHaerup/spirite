@@ -9,13 +9,12 @@ const Team = () => {
 	const { colors } = useContext(ThemeContext);
 	const [visible, setVisible] = useState(false);
 	const [playerId, setPlayerId] = useState(null);
-	console.log(playerId);
 	return (
 		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
 			<TeamList setVisible={setVisible} setPlayerId={setPlayerId} />
 			<BottomModal />
 			{visible && (
-				<View style={{ position: 'absolute', width: '100%', height: '100%' }}>
+				<View style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 100, bottom: 0 }}>
 					<Edit visible={visible} setVisible={setVisible} id={playerId} />
 				</View>
 			)}

@@ -34,8 +34,10 @@ export class ErrorBoundary extends React.Component {
 			return (
 				<SafeAreaView style={{ flex: 1, justifyContent: 'center', backgroundColor: '#011E2B', color: '#fff' }}>
 					<View style={{ padding: 20 }}>
-						<Text style={{ fontSize: 24, color: '#fff' }}>Oops, Something Went Wrong</Text>
-						<Text style={{ marginVertical: 10, lineHeight: 23, fontWeight: '500', color: '#fff' }}>
+						<Text style={{ fontSize: 24, color: '#fff', marginBottom: 20, textAlign: 'center' }}>
+							Oops, Something Went Wrong
+						</Text>
+						<Text style={{ marginVertical: 10, lineHeight: 23, fontWeight: '500', color: '#fff', textAlign: 'center' }}>
 							The app ran into a problem and could not continue. We apologise for any inconvenience this has caused!
 							Press the button below to restart the app and sign back in. Please contact us if this issue persists.
 						</Text>

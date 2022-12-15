@@ -3,10 +3,10 @@ import { Text, View, Dimensions, Image, Animated, PanResponder, StyleSheet } fro
 import CardText from './CardText';
 import { useAttendanceStore } from '../../store/store';
 import { UserContext } from '../../context/context';
-import { useQuery, useRealm } from '../../models/model';
 import placerholderImage from '../../../assets/images/person.jpg';
 import { Realm } from '@realm/react';
 import RealmAddEvent from '../../utils/Realm/RealmAddEvent';
+import { useQuery, useRealm } from '../../context/realmContext';
 
 const Card = ({ setCurrentIndex, currentIndex }) => {
 	const realm = useRealm();
@@ -162,7 +162,7 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 											borderTopRightRadius: 20,
 											borderRadius: 20,
 										}}
-										source={player.uri ? { uri: 'data:image/jpeg;base64,' + player.uri } : placerholderImage}
+										source={player.uri ? { uri: `data:image/jpeg;base64, ${player.uri} ` } : placerholderImage}
 									/>
 									<CardText>{player.name}</CardText>
 								</Animated.View>
