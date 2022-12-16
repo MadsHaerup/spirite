@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ImageBackground, View } from 'react-native';
 import { Dimensions } from 'react-native';
+import { ThemeContext } from '../../context/context';
 import Team from './Team';
 
 const Lineup = () => {
 	const SCREEN_WIDTH = Dimensions.get('window').width;
 	const SCREEN_HEIGHT = Dimensions.get('window').height;
+	const { colors } = useContext(ThemeContext);
 
 	return (
 		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>

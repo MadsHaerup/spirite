@@ -25,7 +25,7 @@ const PlayerSelector = ({ isEditing, setIsEditing, player, onChange, fetchData }
 			<Portal>
 				<Modal visible={isEditing} onDismiss={hideModal} contentContainerStyle={containerStyle}>
 					<View style={{ padding: 20, paddingBottom: 0 }}>
-						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
+						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.primary }}>
 							Select a player
 						</Text>
 						<ListOfPlayers onChange={onChange} player={player} fetchData={fetchData} />
@@ -42,10 +42,10 @@ const PlayerSelector = ({ isEditing, setIsEditing, player, onChange, fetchData }
 						<Button
 							style={{
 								width: 120,
-								borderColor: colors.error,
+								borderColor: colors.warning,
 								color: colors.secondary,
 							}}
-							color={`${colors.error}`}
+							color={`${colors.warning}`}
 							mode="outlined"
 							onPress={() => hideModal()}>
 							Cancel

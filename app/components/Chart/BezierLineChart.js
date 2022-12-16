@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import { UserContext } from '../../context/context';
+import { ThemeContext, UserContext } from '../../context/context';
 import { useQuery } from '../../context/realmContext';
 import { useEvents } from '../../Hooks/useEvents';
-import { months } from '../../utils/Month/months';
+import { months } from '../../utils/data/months';
 
 const BezierLineChart = () => {
 	const { userId } = useContext(UserContext);
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
 	const SCREEN_WIDTH = Dimensions.get('window').width;
+	const { colors } = useContext(ThemeContext);
 
 	const events = months.map(month => useEvents(team, month));
 
@@ -45,15 +46,14 @@ const BezierLineChart = () => {
 			yAxisLabel={''}
 			segments={2}
 			chartConfig={{
-				backgroundGradientFrom: '#0E1C26',
-				backgroundGradientTo: '#294861',
+				backgroundGradientFrom: colors.chartFrom,
+				backgroundGradientTo: colors.chartTo,
 				decimalPlaces: 0,
-				color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+				color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
 			}}
 			bezier
 			style={{
 				marginVertical: 8,
-				borderRadius: 16,
 			}}
 		/>
 	);

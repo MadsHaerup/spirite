@@ -9,7 +9,7 @@
 			"supportsTablet": true
 		},
 		"orientation": "portrait",
-		"icon": "./assets/images/logo.png",
+		"icon": "./assets/favicon-32x32.png",
 		"userInterfaceStyle": "dark",
 		"splash": {
 			"image": "./assets/images/logo.png",
@@ -40,7 +40,7 @@
 					"file": "sentry-expo/upload-sourcemaps",
 					"config": {
 						"organization": "spirite",
-						"project": "Spirite",
+						"project": "spirite",
 						"authToken": "41dc673707064d49b422a41bfb953ead56afbcca7cf54307867974300a0b2a05"
 					}
 				}

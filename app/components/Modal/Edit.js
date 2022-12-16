@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput, HelperText } from 'react-native-paper';
+import { color } from 'react-native-reanimated';
 import { ThemeContext } from '../../context/context';
 import { useRealm } from '../../context/realmContext';
 import RealmEditPlayer from '../../utils/Realm/RealmEditPlayer';
@@ -38,24 +39,30 @@ const Edit = ({ visible, setVisible, id }) => {
 			<Portal>
 				<Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
 					<View style={{ padding: 20, paddingBottom: 20 }}>
-						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.icons }}>
+						<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 20, color: colors.primary }}>
 							Edit Player
 						</Text>
 						<TextInput
+							mode="outlined"
+							outlineColor={`${colors.secondary}`}
+							theme={{ colors: { text: colors.primary, placeholder: colors.primary } }}
 							label="Name"
 							onChangeText={value => setName(value)}
-							activeUnderlineColor={colors.icons}
+							activeOutlineColor={colors.icons}
 							value={name}
-							style={{ backgroundColor: colors.secondary, marginBottom: 20 }}
+							style={{ backgroundColor: colors.PrimaryBackground, marginBottom: 20 }}
 							placeholder="type name"
 						/>
 						<TextInput
+							mode="outlined"
+							theme={{ colors: { text: colors.primary, placeholder: colors.primary } }}
+							outlineColor={`${colors.secondary}`}
 							label="Age"
 							keyboardType="numeric"
 							onChangeText={value => setAge(value)}
-							activeUnderlineColor={colors.icons}
+							activeOutlineColor={colors.icons}
 							value={age}
-							style={{ backgroundColor: colors.secondary }}
+							style={{ backgroundColor: colors.PrimaryBackground }}
 							placeholder="type age"
 						/>
 						<HelperText type="error" visible={numberValidation(age) == undefined ? null : numberValidation(age)}>
@@ -70,7 +77,7 @@ const Edit = ({ visible, setVisible, id }) => {
 							}}>
 							<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
 							<PrimaryBtn
-								style={{ backgroundColor: colors.icons, width: 150 }}
+								style={{ backgroundColor: colors.button, width: 150 }}
 								handlePress={showDialog}
 								content="Position"
 							/>
@@ -89,10 +96,10 @@ const Edit = ({ visible, setVisible, id }) => {
 						<Button
 							style={{
 								width: 150,
-								borderColor: colors.error,
+								borderColor: colors.warning,
 								color: colors.secondary,
 							}}
-							color={`${colors.error}`}
+							color={`${colors.warning}`}
 							mode="outlined"
 							onPress={() => hideModal()}>
 							Cancel

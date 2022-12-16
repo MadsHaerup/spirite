@@ -16,8 +16,8 @@ const Fab = ({ handlePress, icon, label, color, style }) => {
 				}}
 				visible="true"
 				iconMode={'static'}
-				style={{ ...style, bottom: 16, right: 16, position: 'absolute' }}
-				color={color ? color : `${colors.primary}`}
+				style={{ ...style, position: 'absolute' }}
+				color={color ? color : `${colors.buttonContent}`}
 			/>
 		</SafeAreaView>
 	);

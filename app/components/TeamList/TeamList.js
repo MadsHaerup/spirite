@@ -34,8 +34,8 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 
 			<View>
 				<TextInput
-					underlineColor={`${colors.field}`}
-					activeUnderlineColor={`${colors.field}`}
+					underlineColor="#1C2D38"
+					activeUnderlineColor="#1C2D38"
 					label="Search for a player"
 					value={search}
 					onChangeText={text => setSearch(text)}

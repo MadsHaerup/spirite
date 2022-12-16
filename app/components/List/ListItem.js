@@ -8,7 +8,7 @@ const ListItem = ({ name, position, id, age, src, setVisible, setPlayerId, event
 	return (
 		<SwipeableItem id={id} setVisible={setVisible} setPlayerId={setPlayerId}>
 			<List.Item
-				style={{ backgroundColor: colors.field, borderBottomColor: colors.icons, borderBottomWidth: 1 }}
+				style={{ backgroundColor: colors.textField, borderBottomColor: colors.icons, borderBottomWidth: 1 }}
 				descriptionStyle={{ color: colors.primary }}
 				title={name + ',' + ' ' + age}
 				titleStyle={{ color: colors.primary }}

@@ -10,9 +10,9 @@ const PositionSelector = ({ onValueChange, position, style, isDialogOpen, setIsD
 		<Provider>
 			<View style={{ ...style, alignSelf: 'center' }}>
 				<Portal>
-					<Dialog visible={isDialogOpen} onDismiss={hideDialog} style={{ backgroundColor: colors.primary, bottom: 0 }}>
-						<Dialog.Title>Positions</Dialog.Title>
-						<Dialog.Content style={{ backgroundColor: colors.primary }}>
+					<Dialog visible={isDialogOpen} onDismiss={hideDialog} style={{ backgroundColor: '#fff', top: 0 }}>
+						<Dialog.Title style={{ color: '#000' }}>Positions</Dialog.Title>
+						<Dialog.Content style={{ backgroundColor: '#fff' }}>
 							<RadioButton.Group onValueChange={onValueChange} value={position}>
 								<RadioButton.Item labelStyle={{ color: colors.secondary }} label="Goalkeeper" value="Goalkeeper" />
 								<RadioButton.Item labelStyle={{ color: colors.secondary }} label="Defender" value="Defender" />
@@ -20,11 +20,8 @@ const PositionSelector = ({ onValueChange, position, style, isDialogOpen, setIsD
 								<RadioButton.Item labelStyle={{ color: colors.secondary }} label="Striker" value="Striker" />
 							</RadioButton.Group>
 						</Dialog.Content>
-						<Dialog.Actions style={{ backgroundColor: '#fff' }}>
-							<Button
-								color={`${colors.primary}`}
-								style={{ backgroundColor: colors.button, color: colors.primary }}
-								onPress={hideDialog}>
+						<Dialog.Actions style={{ backgroundColor: colors.primaryBackground }}>
+							<Button color={`${colors.buttonContent}`} style={{ backgroundColor: colors.button }} onPress={hideDialog}>
 								Select
 							</Button>
 						</Dialog.Actions>

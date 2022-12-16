@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import { Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import { ThemeContext } from '../../context/context';
 import { useAttendanceStore } from '../../store/store';
 
 const Pie = () => {
 	const attendance = useAttendanceStore(state => state.attendance);
 	const absence = useAttendanceStore(state => state.absence);
 	const SCREEN_WIDTH = Dimensions.get('window').width;
+	const { colors } = useContext(ThemeContext);
 
 	return (
 		<PieChart
@@ -13,15 +16,15 @@ const Pie = () => {
 				{
 					name: 'Absence',
 					attendance: absence,
-					color: '#AC8D9A',
-					legendFontColor: '#fff',
+					color: '#B17478',
+					legendFontColor: colors.primary,
 					legendFontSize: 15,
 				},
 				{
 					name: 'Attendance',
 					attendance: attendance,
 					color: '#87A3A3',
-					legendFontColor: '#fff',
+					legendFontColor: colors.primary,
 					legendFontSize: 15,
 				},
 			]}
@@ -29,10 +32,10 @@ const Pie = () => {
 			height={220}
 			chartConfig={{
 				backgroundColor: '#1cc910',
-				backgroundGradientFrom: '#0E1C26',
-				backgroundGradientTo: '#294861',
+				backgroundGradientFrom: colors.chartFrom,
+				backgroundGradientTo: colors.chartTo,
 				decimalPlaces: 2,
-				color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+				color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
 				style: {
 					borderRadius: 16,
 				},

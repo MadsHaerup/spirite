@@ -32,7 +32,7 @@ const Login = ({ navigation }) => {
 					onChangeText={email => setEmail(email)}
 				/>
 				<HelperText
-					style={{ marginBottom: 10, color: colors.error }}
+					style={{ marginBottom: 10, color: colors.warning }}
 					type="error"
 					visible={validateEmail(email) == false ? true : false}>
 					Invalid Email.
@@ -57,7 +57,7 @@ const Login = ({ navigation }) => {
 				/>
 
 				<HelperText
-					style={{ color: colors.error }}
+					style={{ color: colors.warning }}
 					type="error"
 					visible={validatePassword(password) == false ? true : false}>
 					At least one uppercase letter, one lowercase letter, one number, and one special character.
@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
 							margin: 10,
 							width: 120,
 							backgroundColor:
-								validatePassword(password) == true && validateEmail(email) == true ? colors.button : colors.error,
+								validatePassword(password) == true && validateEmail(email) == true ? colors.button : colors.warning,
 							opacity: validatePassword(password) == true && validateEmail(email) == true ? 1 : 0.7,
 						}}
 						mode="contained"

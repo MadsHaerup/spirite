@@ -12,6 +12,7 @@ import { APP_ID, SENTRY_DSN } from '@env';
 import { ErrorBoundary } from './app/components/ErrorBoundary/ErrorBoundary';
 import Login from './app/views/Login';
 import { RealmProvider } from './app/context/realmContext';
+import { darkTheme, lightTheme } from './app/utils/data/theme';
 
 Sentry.init({
 	dsn: SENTRY_DSN,
@@ -19,63 +20,47 @@ Sentry.init({
 	debug: false, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
-function App() {
-	const lightTheme = {
-		colors: {
-			light: '#fff',
-			primary: '#fff',
-			secondary: '#455763',
-			PrimaryBackground: '#fff',
-			secondaryBackground: '#00674A',
-			inactive: '#455763',
-			iconColor: '#061721',
-			icons: '#08D05B',
-			edit: '#00674A',
-			succes: '#08D05B',
-			button: '#08D05B',
-			delete: '#FF9999',
-			error: '#FF9999',
-			outline: '#B2FF00',
-			field: '#1C2D38',
-		},
-	};
-	const darkTheme = {
-		colors: {
-			dark: '#000',
-			primary: '#fff',
-			secondary: '#455763',
-			PrimaryBackground: '#011E2B',
-			secondaryBackground: '#00674A',
-			inactive: '#455763',
-			iconColor: '#061721',
-			icons: '#08D05B',
-			edit: '#00674A',
-			succes: '#08D05B',
-			button: '#08D05B',
-			delete: '#FF9999',
-			error: '#FF9999',
-			outline: '#B2FF00',
-			field: '#1C2D38',
-		},
-	};
+const App = () => {
 	const [isThemeDark, setIsThemeDark] = useState(true);
+	const [userId, setUserId] = useState('');
+	const [loggedIn, setLoggedIn] = useState('');
+	const value = useMemo(() => ({ userId, setUserId, loggedIn }), [userId, loggedIn]);
+
 	let theme = isThemeDark ? darkTheme : lightTheme;
 
+	const getTheme = async () => {
+		try {
+			const themeData = JSON.parse(await AsyncStorage.getItem('theme'));
+			if (themeData !== null) {
+				setIsThemeDark(themeData);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	getTheme();
+
+	const saveTheme = async value => {
+		try {
+			await AsyncStorage.setItem('theme', JSON.stringify(value));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const toggleTheme = useCallback(() => {
-		return setIsThemeDark(!isThemeDark);
+		setIsThemeDark(!isThemeDark);
+		saveTheme(!isThemeDark);
 	}, [isThemeDark]);
 
 	const themeSettings = useMemo(
 		() => ({
 			toggleTheme,
 			colors: theme.colors,
+			isThemeDark: isThemeDark,
 		}),
 		[toggleTheme, theme]
 	);
-
-	const [userId, setUserId] = useState('');
-	const [loggedIn, setLoggedIn] = useState('');
-	const value = useMemo(() => ({ userId, setUserId, loggedIn }), [userId, loggedIn]);
 
 	const getUser = async () => {
 		try {
@@ -123,6 +108,6 @@ function App() {
 			</ThemeContext.Provider>
 		</ErrorBoundary>
 	);
-}
+};
 
 export default Sentry.Native.wrap(App);

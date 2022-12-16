@@ -23,9 +23,13 @@ const TeamSheet = ({ selectedFormation, setSelectedFormation, formations }) => {
 	return (
 		<BottomSheetModalProvider>
 			<View>
-				<Fab handlePress={handlePresentModalPress} style={{ backgroundColor: colors.button }} icon="soccer-field" />
+				<Fab
+					handlePress={handlePresentModalPress}
+					style={{ backgroundColor: colors.button, bottom: 8, right: -8 }}
+					icon="soccer-field"
+				/>
 				<BottomSheetModal ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
-					<View>
+					<View style={{ paddingBottom: 40 }}>
 						<Text style={{ textAlign: 'center' }}>Team Formation </Text>
 						<WheelPicker
 							formations={formations}

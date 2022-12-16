@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ContributionGraph } from 'react-native-chart-kit';
 import { ScrollView } from 'react-native-gesture-handler';
-import { UserContext } from '../../context/context';
+import { ThemeContext, UserContext } from '../../context/context';
 import { useQuery } from '../../context/realmContext';
 
 const Contribution = () => {
 	const { userId } = useContext(UserContext);
 	const team = useQuery('Teams').filtered(`user_id == '${userId}'`)[0];
+	const { colors } = useContext(ThemeContext);
 
 	const events = useMemo(() => {
 		return team?.players
@@ -39,13 +40,12 @@ const Contribution = () => {
 				width={1150}
 				height={220}
 				chartConfig={{
-					backgroundGradientFrom: '#0E1C26',
-					backgroundGradientTo: '#294861',
-					color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+					backgroundGradientFrom: colors.chartFrom,
+					backgroundGradientTo: colors.chartTo,
+					color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
 				}}
 				style={{
 					marginVertical: 8,
-					borderRadius: 16,
 					overflow: 'scroll',
 				}}
 			/>

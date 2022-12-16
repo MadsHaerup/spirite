@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import { Dimensions, View } from 'react-native';
+import { ThemeContext } from '../../context/context.js';
 import TeamSheet from '../BottomModal/TeamSheet.js';
 import Players from './Players.js';
 
@@ -23,7 +24,7 @@ const reducer = (players, action) => {
 const Team = () => {
 	const SCREEN_WIDTH = Dimensions.get('window').width;
 	const SCREEN_HEIGHT = Dimensions.get('window').height;
-
+	const { colors } = useContext(ThemeContext);
 	const formations = [
 		{ formation: '4-4-2' },
 		{ formation: '4-5-1' },
@@ -68,7 +69,7 @@ const Team = () => {
 				justifyContent: 'center',
 				top: 20,
 				width: SCREEN_WIDTH,
-				height: SCREEN_HEIGHT - 220,
+				height: SCREEN_HEIGHT - 201,
 			}}>
 			<Players players={state} onChangePlayer={handleChangePlayer} selectedFormation={selectedFormation} />
 			<TeamSheet
