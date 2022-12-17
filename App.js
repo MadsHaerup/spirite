@@ -82,7 +82,7 @@ const App = () => {
 		<ErrorBoundary>
 			<ThemeContext.Provider value={themeSettings}>
 				<AppProvider id={APP_ID}>
-					<StatusBar style="light" />
+					<StatusBar style={isThemeDark ? 'light' : 'dark'} />
 
 					{!loggedIn && (
 						<UserContext.Provider value={value}>

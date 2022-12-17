@@ -30,6 +30,7 @@ const Card = ({ setCurrentIndex, currentIndex }) => {
 			// Release Event
 			if (dx >= 150) {
 				RealmAddEvent({ realm: realm, team: team, index: currentIndex, objectId: new Realm.BSON.ObjectId() });
+				console.log(currentIndex);
 				// Swpied right side
 				Animated.spring(position, {
 					toValue: { x: SCREEN_WIDTH + 100, y: dy },

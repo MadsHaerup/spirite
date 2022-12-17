@@ -14,7 +14,7 @@ const Stats = () => {
 	const attendance = useAttendanceStore(state => state.attendance);
 	const absence = useAttendanceStore(state => state.absence);
 	return (
-		<ScrollView>
+		<ScrollView style={{ backgroundColor: colors.PrimaryBackground }}>
 			<View style={{ flex: 1, paddingTop: 60, alignItems: 'center', backgroundColor: colors.PrimaryBackground }}>
 				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Team Stats</Headline>
 				<BezierLineChart />
