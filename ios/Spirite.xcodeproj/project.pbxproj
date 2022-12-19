@@ -368,6 +368,10 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
+				"WARNING_CFLAGS[arch=*]" = (
+					"-Wno-nonnull",
+					"-Wno-nullability-completeness",
+				);
 			};
 			name = Debug;
 		};
@@ -397,6 +401,10 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
+				"WARNING_CFLAGS[arch=*]" = (
+					"-Wno-nullability-completeness",
+					"-Wno-nonnull",
+				);
 			};
 			name = Release;
 		};
@@ -456,6 +464,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				"WARNING_CFLAGS[arch=*]" = (
+					"-Wno-nullability-completeness",
+					"-Wno-nonnull",
+				);
 			};
 			name = Debug;
 		};
@@ -509,6 +521,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				"WARNING_CFLAGS[arch=*]" = (
+					"-Wno-nonnull",
+					"-Wno-nullability-completeness",
+				);
 			};
 			name = Release;
 		};

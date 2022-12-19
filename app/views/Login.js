@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
 	const [secureTextEntry, setSecureTextEntry] = useState(true);
 
 	return (
-		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, justifyContent: 'center' }}>
+		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, paddingTop: 80 }}>
 			<Logo />
 			<View style={{ padding: 20 }}>
 				<TextInput
@@ -72,7 +72,7 @@ const Login = ({ navigation }) => {
 							width: 120,
 							backgroundColor:
 								validatePassword(password) == true && validateEmail(email) == true ? colors.button : colors.warning,
-							opacity: validatePassword(password) == true && validateEmail(email) == true ? 1 : 0.7,
+							opacity: validatePassword(password) == true && validateEmail(email) == true ? 1 : 0.5,
 						}}
 						mode="contained"
 						onPress={async () => {
@@ -100,7 +100,7 @@ const Login = ({ navigation }) => {
 								});
 								console.log(realm.subscriptions.state); // log the subscription state
 
-								navigation.navigate('Home');
+								// navigation.navigate('Home');
 							} catch (err) {
 								console.error('Failed to log in', err.message);
 							}

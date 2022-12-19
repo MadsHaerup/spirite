@@ -24,7 +24,7 @@ const BottomModal = forwardRef((props, ref) => {
 	const [selectedImage, setSelectedImage] = useState(null);
 	const { colors } = useContext(ThemeContext);
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const snapPoints = useMemo(() => ['25%', '50%'], []);
+	const snapPoints = useMemo(() => ['60%', '90%'], []);
 	const showDialog = () => setIsDialogOpen(true);
 
 	//transform image to base64 string
@@ -110,10 +110,19 @@ const BottomModal = forwardRef((props, ref) => {
 							<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
 
 							<PrimaryBtn content="position" handlePress={showDialog} style={{ width: 150 }} />
-							<IconButton
-								icon={verified() == true ? 'send' : 'cancel'}
-								animated="true"
-								size={24}
+						</View>
+
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'center',
+								alignItems: 'center',
+								marginBottom: 20,
+								marginTop: 20,
+							}}>
+							<Button
+								mode="outlined"
+								icon="send"
 								onPress={() => {
 									if (verified() == true) {
 										RealmAddPlayer({
@@ -129,7 +138,10 @@ const BottomModal = forwardRef((props, ref) => {
 										showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
 									}
 								}}
-							/>
+								style={{ direction: 'rtl', color: colors.primary }}
+								color={`${colors.button}`}>
+								Submit
+							</Button>
 						</View>
 
 						<PositionSelector

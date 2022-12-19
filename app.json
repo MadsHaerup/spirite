@@ -1,50 +1,55 @@
 {
-	"expo": {
-		"name": "spirite",
-		"slug": "swipeapp",
-		"version": "1.0.0",
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"bundleIdentifier": "spirite.expo.client",
-			"supportsTablet": true
-		},
-		"orientation": "portrait",
-		"icon": "./assets/favicon-32x32.png",
-		"userInterfaceStyle": "dark",
-		"splash": {
-			"image": "./assets/images/logo.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#011E2B"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/adaptive.png",
-				"backgroundColor": "#011E2B"
-			}
-		},
-		"web": {
-			"favicon": "./assets/favicon-32x32.png"
-		},
-		"extra": {
-			"eas": {
-				"projectId": "c7810c49-4f25-423a-91fd-c88e1c85fffe"
-			}
-		},
-		"plugins": ["sentry-expo"],
-		"hooks": {
-			"postPublish": [
-				{
-					"file": "sentry-expo/upload-sourcemaps",
-					"config": {
-						"organization": "spirite",
-						"project": "spirite",
-						"authToken": "41dc673707064d49b422a41bfb953ead56afbcca7cf54307867974300a0b2a05"
-					}
-				}
-			]
-		}
-	}
+  "expo": {
+    "name": "spirite",
+    "slug": "swipeapp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "spirite.expo.client",
+      "supportsTablet": true
+    },
+    "orientation": "portrait",
+    "icon": "./assets/favicon-32x32.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#011E2B"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive.png",
+        "backgroundColor": "#011E2B"
+      },
+      "package": "spirite.expo.client"
+    },
+    "web": {
+      "favicon": "./assets/favicon-32x32.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c7810c49-4f25-423a-91fd-c88e1c85fffe"
+      }
+    },
+    "plugins": [
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "spirite",
+            "project": "spirite",
+            "authToken": "41dc673707064d49b422a41bfb953ead56afbcca7cf54307867974300a0b2a05"
+          }
+        }
+      ]
+    }
+  }
 }
