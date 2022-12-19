@@ -13,6 +13,8 @@ import { ErrorBoundary } from './app/components/ErrorBoundary/ErrorBoundary';
 import Login from './app/views/Login';
 import { RealmProvider } from './app/context/realmContext';
 import { darkTheme, lightTheme } from './app/utils/data/theme';
+import { View, Text } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 
 Sentry.init({
 	dsn: SENTRY_DSN,
@@ -24,10 +26,10 @@ const App = () => {
 	const [isThemeDark, setIsThemeDark] = useState(true);
 	const [userId, setUserId] = useState('');
 	const [loggedIn, setLoggedIn] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 	const value = useMemo(() => ({ userId, setUserId, loggedIn }), [userId, loggedIn]);
 
 	let theme = isThemeDark ? darkTheme : lightTheme;
-
 	const getTheme = async () => {
 		try {
 			const themeData = JSON.parse(await AsyncStorage.getItem('theme'));
@@ -58,6 +60,7 @@ const App = () => {
 			toggleTheme,
 			colors: theme.colors,
 			isThemeDark: isThemeDark,
+			setIsLoading,
 		}),
 		[toggleTheme, theme]
 	);
@@ -78,11 +81,34 @@ const App = () => {
 		getUser();
 	}, [loggedIn, userId]);
 
+	console.log(isLoading, loggedIn);
+
+	setTimeout(() => {
+		setIsLoading(false);
+	}, 2100);
+
 	return (
 		<ErrorBoundary>
 			<ThemeContext.Provider value={themeSettings}>
 				<AppProvider id={APP_ID}>
 					<StatusBar style={isThemeDark ? 'light' : 'dark'} />
+
+					{isLoading === true && (
+						<View
+							style={{
+								flex: 1,
+								backgroundColor: themeSettings.colors.PrimaryBackground,
+								justifyContent: 'center',
+								alignItems: 'center',
+								position: 'absolute',
+								top: 0,
+								bottom: 0,
+								left: 0,
+								right: 0,
+							}}>
+							<ActivityIndicator size="large" color={`${themeSettings.colors.button}`} />
+						</View>
+					)}
 
 					{!loggedIn && (
 						<UserContext.Provider value={value}>

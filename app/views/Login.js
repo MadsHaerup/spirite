@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
 	const [password, setPassword] = useState('');
 	const { setUserId } = useContext(UserContext);
 	const app = new Realm.App({ id: APP_ID });
-	const { colors } = useContext(ThemeContext);
+	const { colors, setIsLoading } = useContext(ThemeContext);
 	const [secureTextEntry, setSecureTextEntry] = useState(true);
 
 	return (
@@ -81,6 +81,7 @@ const Login = ({ navigation }) => {
 
 							try {
 								const user = await app.logIn(credentials);
+								setIsLoading(true);
 								console.log('Successfully logged in!', user.id);
 								storeUser(user.id);
 								setUserId(user.id);
