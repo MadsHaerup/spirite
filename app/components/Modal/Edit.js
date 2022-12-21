@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import { Modal, Portal, Text, Button, Provider, TextInput, HelperText } from 'react-native-paper';
-import { color } from 'react-native-reanimated';
 import { ThemeContext } from '../../context/context';
 import { useRealm } from '../../context/realmContext';
 import RealmEditPlayer from '../../utils/Realm/RealmEditPlayer';

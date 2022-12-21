@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart';
-import { Button } from 'react-native-paper';
 import PrimaryBtn from '../PrimaryBtn/PrimaryBtn';
 
 export class ErrorBoundary extends React.Component {

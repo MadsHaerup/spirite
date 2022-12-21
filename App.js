@@ -13,7 +13,7 @@ import { ErrorBoundary } from './app/components/ErrorBoundary/ErrorBoundary';
 import Login from './app/views/Login';
 import { RealmProvider } from './app/context/realmContext';
 import { darkTheme, lightTheme } from './app/utils/data/theme';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
 Sentry.init({
@@ -24,10 +24,10 @@ Sentry.init({
 
 const App = () => {
 	const [isThemeDark, setIsThemeDark] = useState(true);
-	const [userId, setUserId] = useState('');
-	const [loggedIn, setLoggedIn] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
-	const value = useMemo(() => ({ userId, setUserId, loggedIn }), [userId, loggedIn]);
+	const [userId, setUserId] = useState('');
+	const loggedIn = userId;
+	const value = useMemo(() => ({ userId, setUserId }), [userId]);
 
 	let theme = isThemeDark ? darkTheme : lightTheme;
 	const getTheme = async () => {
@@ -69,7 +69,6 @@ const App = () => {
 		try {
 			const userData = JSON.parse(await AsyncStorage.getItem('user'));
 			if (value !== null) {
-				setLoggedIn(userData);
 				setUserId(userData);
 			}
 		} catch (error) {

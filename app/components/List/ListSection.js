@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { List } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 

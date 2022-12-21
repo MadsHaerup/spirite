@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Button } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 
-const ImageUpload = ({ selectedImage, setSelectedImage, style }) => {
+const ImageUpload = ({ setSelectedImage, style }) => {
 	const { colors } = useContext(ThemeContext);
 	const pickImageAsync = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync({

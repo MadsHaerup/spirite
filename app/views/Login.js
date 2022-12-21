@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
 	const [password, setPassword] = useState('');
 	const { setUserId } = useContext(UserContext);
 	const app = new Realm.App({ id: APP_ID });
-	const { colors, setIsLoading } = useContext(ThemeContext);
+	const { colors, isThemeDark, setIsLoading } = useContext(ThemeContext);
 	const [secureTextEntry, setSecureTextEntry] = useState(true);
 
 	return (
@@ -23,7 +23,7 @@ const Login = ({ navigation }) => {
 			<Logo />
 			<View style={{ padding: 20 }}>
 				<TextInput
-					style={{ backgroundColor: colors.primary, marginBottom: 2 }}
+					style={{ backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground, marginBottom: 2 }}
 					outlineColor={`${colors.primary}`}
 					activeUnderlineColor={`${colors.icons}`}
 					mode="flat"
@@ -41,7 +41,7 @@ const Login = ({ navigation }) => {
 				<TextInput
 					secureTextEntry={secureTextEntry}
 					editable={true}
-					style={{ backgroundColor: colors.primary }}
+					style={{ backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground }}
 					outlineColor={`${colors.primary}`}
 					activeUnderlineColor={`${colors.icons}`}
 					mode="flat"

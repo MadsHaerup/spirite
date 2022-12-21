@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { Modal, Portal, Text, Button, Provider, TextInput } from 'react-native-paper';
+import { Modal, Portal, Text, Button, Provider } from 'react-native-paper';
 import { ThemeContext } from '../../context/context';
 import ListOfPlayers from '../ListOfPlayers/ListOfPlayers';
 

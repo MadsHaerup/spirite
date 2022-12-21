@@ -12,7 +12,7 @@ const SignUp = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const app = new Realm.App({ id: APP_ID });
-	const { colors } = useContext(ThemeContext);
+	const { colors, isThemeDark } = useContext(ThemeContext);
 	const [secureTextEntry, setSecureTextEntry] = useState(true);
 
 	return (
@@ -22,7 +22,7 @@ const SignUp = ({ navigation }) => {
 				<TextInput
 					outlineColor={`${colors.primary}`}
 					activeUnderlineColor={`${colors.icons}`}
-					style={{ marginBottom: 2, backgroundColor: colors.primary }}
+					style={{ marginBottom: 2, backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground }}
 					mode="flat"
 					label="Email"
 					value={email}
@@ -37,7 +37,7 @@ const SignUp = ({ navigation }) => {
 				<TextInput
 					secureTextEntry={secureTextEntry}
 					editable={true}
-					style={{ backgroundColor: colors.primary }}
+					style={{ backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground }}
 					outlineColor={`${colors.primary}`}
 					activeUnderlineColor={`${colors.icons}`}
 					mode="flat"

@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Fab from '../Fab/Fab';
 import { ThemeContext, UserContext } from '../../context/context';
-import { FAB, TextInput, HelperText, Button, IconButton } from 'react-native-paper';
+import { TextInput, HelperText, Button } from 'react-native-paper';
 import { showToast } from '../../utils/Toast/showToast';
 import PositionSelector from '../Modal/PositionSelector';
 import ImageUpload from '../ImageUpload/ImageUpload';
