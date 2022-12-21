@@ -81,8 +81,6 @@ const App = () => {
 		getUser();
 	}, [loggedIn, userId]);
 
-	console.log(isLoading, loggedIn);
-
 	setTimeout(() => {
 		setIsLoading(false);
 	}, 2100);
