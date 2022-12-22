@@ -9,9 +9,9 @@ const PrimaryBtn = ({ style, icon, handlePress, content }) => {
 			icon={icon ? icon : null}
 			mode="contained"
 			onPress={() => handlePress()}
-			labelStyle={{ color: colors.buttonContent }}
+			labelStyle={{ color: colors?.buttonContent }}
 			style={{
-				backgroundColor: colors.button,
+				backgroundColor: colors?.button,
 				justifyContent: 'center',
 				alignSelf: 'center',
 				...style,

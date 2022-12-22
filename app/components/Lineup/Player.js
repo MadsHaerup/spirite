@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { ThemeContext } from '../../context/context';
 
-const Player = ({ player, setActivePlayer, setIsEditing, i }) => {
+const Player = ({ player, setActivePlayer, setIsEditing }) => {
 	const { colors } = useContext(ThemeContext);
 	return (
 		<View

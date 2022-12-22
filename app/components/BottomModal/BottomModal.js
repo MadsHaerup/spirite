@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useContext, useMemo, useRef, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import Fab from '../Fab/Fab';
 import { ThemeContext, UserContext } from '../../context/context';
@@ -64,94 +64,97 @@ const BottomModal = forwardRef((props, ref) => {
 					style={{ backgroundColor: colors.button, bottom: 8, right: 8 }}
 				/>
 				<BottomSheetModal ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
-					<View style={{ flex: 1 }}>
-						<Text
-							style={{
-								textAlign: 'center',
-								paddingTop: 10,
-								paddingBottom: 10,
-								fontSize: 24,
-								fontWeight: 'bold',
-								marginTop: 20,
-								marginBottom: 20,
-							}}>
-							Add to team
-						</Text>
-						<TextInput
-							ref={refToTextInput}
-							label="Name"
-							onChangeText={value => setName(value)}
-							activeUnderlineColor={colors.icons}
-							value={name}
-							style={{ backgroundColor: '#fff', marginBottom: 20 }}
-							placeholder="type name"
-						/>
-						<TextInput
-							label="Age"
-							keyboardType="numeric"
-							onChangeText={value => setAge(value)}
-							activeUnderlineColor={colors.icons}
-							value={age}
-							style={{ backgroundColor: '#fff' }}
-							placeholder="type age"
-						/>
-						<HelperText type="error" visible={numberValidation(age) == undefined ? null : numberValidation(age)}>
-							Only Use Numbers.
-						</HelperText>
+					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+						<View style={{ flex: 1 }}>
+							<Text
+								style={{
+									textAlign: 'center',
+									paddingTop: 10,
+									paddingBottom: 10,
+									fontSize: 24,
+									fontWeight: 'bold',
+									marginTop: 20,
+									marginBottom: 20,
+								}}>
+								Add to team
+							</Text>
+							<TextInput
+								ref={refToTextInput}
+								label="Name"
+								onChangeText={value => setName(value)}
+								activeUnderlineColor={colors.icons}
+								value={name}
+								style={{ backgroundColor: '#fff', marginBottom: 20 }}
+								placeholder="type name"
+							/>
 
-						<View
-							style={{
-								flexDirection: 'row',
-								justifyContent: 'space-evenly',
-								alignItems: 'center',
-								marginBottom: 20,
-								marginTop: 20,
-							}}>
-							<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
+							<TextInput
+								label="Age"
+								keyboardType="numeric"
+								onChangeText={value => setAge(value)}
+								activeUnderlineColor={colors.icons}
+								value={age}
+								style={{ backgroundColor: '#fff' }}
+								placeholder="type age"
+							/>
+							<HelperText type="error" visible={numberValidation(age) == undefined ? null : numberValidation(age)}>
+								Only Use Numbers.
+							</HelperText>
 
-							<PrimaryBtn content="position" handlePress={showDialog} style={{ width: 150 }} />
+							<View
+								style={{
+									flexDirection: 'row',
+									justifyContent: 'space-evenly',
+									alignItems: 'center',
+									marginBottom: 20,
+									marginTop: 20,
+								}}>
+								<ImageUpload selectedImage={selectedImage} setSelectedImage={setSelectedImage} style={{ width: 150 }} />
+
+								<PrimaryBtn content="position" handlePress={showDialog} style={{ width: 150 }} />
+							</View>
+
+							<View
+								style={{
+									flexDirection: 'row',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: 20,
+									marginTop: 20,
+								}}>
+								<Button
+									mode="outlined"
+									icon="send"
+									onPress={() => {
+										if (verified() == true) {
+											RealmAddPlayer({
+												realm: realm,
+												team: team,
+												objectId: new Realm.BSON.ObjectId(),
+												name: name,
+												position: position,
+												base64Image: base64Image,
+												age: age,
+											});
+											resetFields();
+											showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
+										}
+									}}
+									style={{ direction: 'rtl', color: colors.primary }}
+									color={`${colors.button}`}>
+									Submit
+								</Button>
+							</View>
+
+							<PositionSelector
+								isDialogOpen={isDialogOpen}
+								setIsDialogOpen={setIsDialogOpen}
+								onValueChange={value => setPosition(value)}
+								position={position}
+								style={{ width: 200 }}
+							/>
 						</View>
-
-						<View
-							style={{
-								flexDirection: 'row',
-								justifyContent: 'center',
-								alignItems: 'center',
-								marginBottom: 20,
-								marginTop: 20,
-							}}>
-							<Button
-								mode="outlined"
-								icon="send"
-								onPress={() => {
-									if (verified() == true) {
-										RealmAddPlayer({
-											realm: realm,
-											team: team,
-											objectId: new Realm.BSON.ObjectId(),
-											name: name,
-											position: position,
-											base64Image: base64Image,
-											age: age,
-										});
-										resetFields();
-										showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
-									}
-								}}
-								style={{ direction: 'rtl', color: colors.primary }}
-								color={`${colors.button}`}>
-								Submit
-							</Button>
-						</View>
-
-						<PositionSelector
-							isDialogOpen={isDialogOpen}
-							setIsDialogOpen={setIsDialogOpen}
-							onValueChange={value => setPosition(value)}
-							position={position}
-							style={{ width: 200 }}
-						/>
-					</View>
+					</TouchableWithoutFeedback>
 				</BottomSheetModal>
 			</View>
 		</BottomSheetModalProvider>
