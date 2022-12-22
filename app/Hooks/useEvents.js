@@ -31,6 +31,12 @@ export const useEvents = (team, month) => {
 			.map(event => event.length);
 	}, [team]);
 
-	const sum = events.reduce((a, b) => a + b, 0);
+	let sum;
+	if (events) {
+		sum = events?.reduce((a, b) => a + b, 0);
+	} else {
+		sum = 0;
+	}
+
 	return sum;
 };
