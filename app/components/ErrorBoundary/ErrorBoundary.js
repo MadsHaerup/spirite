@@ -44,7 +44,7 @@ export class ErrorBoundary extends React.Component {
 						<PrimaryBtn
 							icon="login"
 							handlePress={this.handleBackToSignIn}
-							style={{ marginVertical: 15 }}
+							style={{ marginVertical: 15, backgroundColor: '#08D05B', color: '#fff' }}
 							content="Back to Sign In Screen"
 						/>
 					</View>
