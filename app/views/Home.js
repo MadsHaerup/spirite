@@ -18,7 +18,7 @@ const Home = () => {
 	};
 
 	return (
-		<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
+		<View style={{ flex: 1, backgroundColor: colors?.PrimaryBackground, position: 'relative' }}>
 			<View style={{ height: 40 }} />
 
 			{userTeam === undefined && (
@@ -31,13 +31,13 @@ const Home = () => {
 
 			{currentIndex > 0 && userTeam?.players?.length > 0 && currentIndex == userTeam.players.length && (
 				<View style={{ flex: 1 }}>
-					<Text style={{ textAlign: 'center', color: colors.primary, fontSize: 24 }}>You are done for today!</Text>
+					<Text style={{ textAlign: 'center', color: colors?.primary, fontSize: 24 }}>You are done for today!</Text>
 				</View>
 			)}
 
 			{userTeam?.players?.length == 0 && (
 				<View style={{ flex: 1 }}>
-					<Text style={{ textAlign: 'center', color: colors.primary, fontSize: 24 }}>Add players to your team</Text>
+					<Text style={{ textAlign: 'center', color: colors?.primary, fontSize: 24 }}>Add players to your team</Text>
 				</View>
 			)}
 

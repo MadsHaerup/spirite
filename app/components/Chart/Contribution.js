@@ -40,9 +40,10 @@ const Contribution = () => {
 				width={1150}
 				height={220}
 				chartConfig={{
-					backgroundGradientFrom: colors.chartFrom,
-					backgroundGradientTo: colors.chartTo,
-					color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
+					backgroundGradientFrom: colors?.chartFrom,
+					backgroundGradientTo: colors?.chartTo,
+					color: (opacity = 1) =>
+						`rgba(${colors?.chartColor}, ${colors?.chartColor}, ${colors?.chartColor}, ${opacity})`,
 				}}
 				style={{
 					marginVertical: 8,

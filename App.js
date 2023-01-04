@@ -94,7 +94,7 @@ const App = () => {
 						<View
 							style={{
 								flex: 1,
-								backgroundColor: themeSettings.colors.PrimaryBackground,
+								backgroundColor: themeSettings.colors?.PrimaryBackground,
 								justifyContent: 'center',
 								alignItems: 'center',
 								position: 'absolute',
@@ -103,7 +103,7 @@ const App = () => {
 								left: 0,
 								right: 0,
 							}}>
-							<ActivityIndicator size="large" color={`${themeSettings.colors.button}`} />
+							<ActivityIndicator size="large" color={`${themeSettings.colors?.button}`} />
 						</View>
 					)}
 

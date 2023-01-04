@@ -7,7 +7,7 @@ const ListSection = ({ children }) => {
 
 	return (
 		<List.Section>
-			<List.Subheader style={{ color: colors.primary }}>Team Members</List.Subheader>
+			<List.Subheader style={{ color: colors?.primary }}>Team Members</List.Subheader>
 			{children}
 		</List.Section>
 	);

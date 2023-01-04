@@ -26,7 +26,7 @@ const TeamList = ({ setVisible, setPlayerId }) => {
 				style={{
 					textAlign: 'center',
 					marginBottom: 20,
-					color: colors.primary,
+					color: colors?.primary,
 					fontWeight: 'bold',
 				}}>
 				{team?.team_name}

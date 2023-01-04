@@ -24,7 +24,7 @@ const ListOfPlayers = ({ player, onChange }) => {
 				{players.map(player => (
 					<RadioButton.Item
 						key={player._id}
-						labelStyle={{ color: colors.primary }}
+						labelStyle={{ color: colors?.primary }}
 						label={player.name}
 						value={player.name}
 					/>

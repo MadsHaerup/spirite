@@ -15,13 +15,13 @@ const Tabs = () => {
 	return (
 		<Tab.Navigator
 			initialRouteName="Home"
-			activeColor={`${colors.icons}`}
-			inactiveColor={`${colors.inactive}`}
+			activeColor={`${colors?.icons}`}
+			inactiveColor={`${colors?.inactive}`}
 			labelStyle={{ fontSize: 12 }}
 			shifting="true"
 			barStyle={{
 				display: 'flex',
-				backgroundColor: colors.PrimaryBackground,
+				backgroundColor: colors?.PrimaryBackground,
 			}}>
 			<Tab.Screen
 				name="Home"

@@ -17,14 +17,14 @@ const Pie = () => {
 					name: 'Absence',
 					attendance: absence,
 					color: '#B17478',
-					legendFontColor: colors.primary,
+					legendFontColor: colors?.primary,
 					legendFontSize: 15,
 				},
 				{
 					name: 'Attendance',
 					attendance: attendance,
 					color: '#87A3A3',
-					legendFontColor: colors.primary,
+					legendFontColor: colors?.primary,
 					legendFontSize: 15,
 				},
 			]}
@@ -32,10 +32,10 @@ const Pie = () => {
 			height={220}
 			chartConfig={{
 				backgroundColor: '#1cc910',
-				backgroundGradientFrom: colors.chartFrom,
-				backgroundGradientTo: colors.chartTo,
+				backgroundGradientFrom: colors?.chartFrom,
+				backgroundGradientTo: colors?.chartTo,
 				decimalPlaces: 2,
-				color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
+				color: (opacity = 1) => `rgba(${colors?.chartColor}, ${colors?.chartColor}, ${colors?.chartColor}, ${opacity})`,
 				style: {
 					borderRadius: 16,
 				},

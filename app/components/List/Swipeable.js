@@ -22,7 +22,7 @@ const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {
 					flex: 1,
 					justifyContent: 'center',
 					paddingLeft: 15,
-					backgroundColor: colors.edit,
+					backgroundColor: colors?.edit,
 				}}
 				onPress={() => {
 					setVisible(true);
@@ -31,7 +31,7 @@ const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {
 				<Animated.Text
 					style={{
 						transform: [{ translateX: trans }],
-						color: colors.buttonContent,
+						color: colors?.buttonContent,
 						padding: 10,
 						backgroundColor: 'transparent',
 						fontSize: 16,
@@ -55,7 +55,7 @@ const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {
 					flex: 1,
 					justifyContent: 'center',
 					alignItems: 'flex-end',
-					backgroundColor: colors.warning,
+					backgroundColor: colors?.warning,
 				}}
 				onPress={() => {
 					realm.write(() => {
@@ -70,7 +70,7 @@ const SwipeableItem = ({ children, id, setVisible, setPlayerId }) => {
 				<Animated.Text
 					style={{
 						transform: [{ translateX: trans }],
-						color: colors.buttonContent,
+						color: colors?.buttonContent,
 						padding: 10,
 						backgroundColor: 'transparent',
 						fontSize: 16,

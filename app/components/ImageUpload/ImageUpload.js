@@ -22,8 +22,8 @@ const ImageUpload = ({ setSelectedImage, style }) => {
 	return (
 		<View style={{ textAlign: 'center', justifyContent: 'center' }}>
 			<Button
-				color={`${colors.buttonContent}`}
-				style={{ ...style, backgroundColor: colors.button, alignSelf: 'center' }}
+				color={`${colors?.buttonContent}`}
+				style={{ ...style, backgroundColor: colors?.button, alignSelf: 'center' }}
 				mode="text"
 				onPress={pickImageAsync}>
 				Photo

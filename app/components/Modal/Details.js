@@ -14,31 +14,31 @@ const Details = () => {
 	const hideModal = () => setVisible(false);
 	const { colors } = useContext(ThemeContext);
 	const containerStyle = {
-		backgroundColor: colors.PrimaryBackground,
+		backgroundColor: colors?.PrimaryBackground,
 		padding: 20,
 		borderRadius: 20,
 		marginLeft: 10,
 		marginRight: 10,
-		borderColor: colors.icons,
+		borderColor: colors?.icons,
 		borderWidth: 1,
 	};
 	return (
 		<Provider>
 			<Portal>
 				<Modal visible={visible} contentContainerStyle={containerStyle}>
-					<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 10, color: colors.icons }}>
+					<Text style={{ textAlign: 'center', fontSize: 24, fontWeight: '600', padding: 10, color: colors?.icons }}>
 						Finish Team registration
 					</Text>
 					<TextInput
 						style={{ marginBottom: 20 }}
 						mode="outlined"
-						activeOutlineColor={`${colors.icons}`}
+						activeOutlineColor={`${colors?.icons}`}
 						label="Team Name"
 						value={team}
 						onChangeText={team => setTeam(team)}
 					/>
 					<Button
-						style={{ margin: 10, width: 120, alignSelf: 'flex-end', backgroundColor: colors.button }}
+						style={{ margin: 10, width: 120, alignSelf: 'flex-end', backgroundColor: colors?.button }}
 						mode="contained"
 						onPress={() => {
 							try {

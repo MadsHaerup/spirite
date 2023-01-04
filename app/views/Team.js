@@ -13,7 +13,7 @@ const Team = () => {
 	const SCREEN_WIDTH = Dimensions.get('window').width;
 
 	return (
-		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors.PrimaryBackground, position: 'relative' }}>
+		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors?.PrimaryBackground, position: 'relative' }}>
 			<TeamList setVisible={setVisible} setPlayerId={setPlayerId} />
 			<BottomModal />
 			{visible && (

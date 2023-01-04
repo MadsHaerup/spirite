@@ -25,7 +25,7 @@ const TeamSheet = ({ selectedFormation, setSelectedFormation, formations }) => {
 			<View>
 				<Fab
 					handlePress={handlePresentModalPress}
-					style={{ backgroundColor: colors.button, bottom: 8, right: -8 }}
+					style={{ backgroundColor: colors?.button, bottom: 8, right: -8 }}
 					icon="soccer-field"
 				/>
 				<BottomSheetModal ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>

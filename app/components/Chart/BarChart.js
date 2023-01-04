@@ -44,10 +44,10 @@ const Bar = () => {
 			height={220}
 			yAxisLabel={''}
 			chartConfig={{
-				backgroundGradientFrom: colors.chartFrom,
-				backgroundGradientTo: colors.chartTo,
+				backgroundGradientFrom: colors?.chartFrom,
+				backgroundGradientTo: colors?.chartTo,
 				decimalPlaces: 0,
-				color: (opacity = 1) => `rgba(${colors.chartColor}, ${colors.chartColor}, ${colors.chartColor}, ${opacity})`,
+				color: (opacity = 1) => `rgba(${colors?.chartColor}, ${colors?.chartColor}, ${colors?.chartColor}, ${opacity})`,
 				barPercentage: 0.2,
 			}}
 			style={{

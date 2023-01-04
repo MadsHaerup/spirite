@@ -61,7 +61,7 @@ const BottomModal = forwardRef((props, ref) => {
 					handlePress={handlePresentModalPress}
 					label="ADD"
 					icon="plus"
-					style={{ backgroundColor: colors.button, bottom: 8, right: 8 }}
+					style={{ backgroundColor: colors?.button, bottom: 8, right: 8 }}
 				/>
 				<BottomSheetModal ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
 					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -82,7 +82,7 @@ const BottomModal = forwardRef((props, ref) => {
 								ref={refToTextInput}
 								label="Name"
 								onChangeText={value => setName(value)}
-								activeUnderlineColor={colors.icons}
+								activeUnderlineColor={colors?.icons}
 								value={name}
 								style={{ backgroundColor: '#fff', marginBottom: 20 }}
 								placeholder="type name"
@@ -92,7 +92,7 @@ const BottomModal = forwardRef((props, ref) => {
 								label="Age"
 								keyboardType="numeric"
 								onChangeText={value => setAge(value)}
-								activeUnderlineColor={colors.icons}
+								activeUnderlineColor={colors?.icons}
 								value={age}
 								style={{ backgroundColor: '#fff' }}
 								placeholder="type age"
@@ -140,8 +140,8 @@ const BottomModal = forwardRef((props, ref) => {
 											showToast({ type: 'success', title: 'Succes', body: 'Player has been added to the list 👋' });
 										}
 									}}
-									style={{ direction: 'rtl', color: colors.primary }}
-									color={`${colors.button}`}>
+									style={{ direction: 'rtl', color: colors?.primary }}
+									color={`${colors?.button}`}>
 									Submit
 								</Button>
 							</View>

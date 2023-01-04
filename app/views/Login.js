@@ -21,20 +21,20 @@ const Login = ({ navigation }) => {
 	return (
 		<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				<View style={{ flex: 1, backgroundColor: colors.PrimaryBackground, paddingTop: 80, justifyContent: 'center' }}>
+				<View style={{ flex: 1, backgroundColor: colors?.PrimaryBackground, paddingTop: 80, justifyContent: 'center' }}>
 					<Logo />
 					<View style={{ padding: 20 }}>
 						<TextInput
-							style={{ backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground, marginBottom: 2 }}
-							outlineColor={`${colors.primary}`}
-							activeUnderlineColor={`${colors.icons}`}
+							style={{ backgroundColor: isThemeDark ? colors?.primary : colors?.PrimaryBackground, marginBottom: 2 }}
+							outlineColor={`${colors?.primary}`}
+							activeUnderlineColor={`${colors?.icons}`}
 							mode="flat"
 							label="Email"
 							value={email}
 							onChangeText={email => setEmail(email)}
 						/>
 						<HelperText
-							style={{ marginBottom: 10, color: colors.warning }}
+							style={{ marginBottom: 10, color: colors?.warning }}
 							type="error"
 							visible={validateEmail(email) == false ? true : false}>
 							Invalid Email.
@@ -43,9 +43,9 @@ const Login = ({ navigation }) => {
 						<TextInput
 							secureTextEntry={secureTextEntry}
 							editable={true}
-							style={{ backgroundColor: isThemeDark ? colors.primary : colors.PrimaryBackground }}
-							outlineColor={`${colors.primary}`}
-							activeUnderlineColor={`${colors.icons}`}
+							style={{ backgroundColor: isThemeDark ? colors?.primary : colors?.PrimaryBackground }}
+							outlineColor={`${colors?.primary}`}
+							activeUnderlineColor={`${colors?.icons}`}
 							mode="flat"
 							label="Password"
 							value={password}
@@ -59,7 +59,7 @@ const Login = ({ navigation }) => {
 						/>
 
 						<HelperText
-							style={{ color: colors.warning }}
+							style={{ color: colors?.warning }}
 							type="error"
 							visible={validatePassword(password) == false ? true : false}>
 							At least one uppercase letter, one lowercase letter, one number, and one special character.
@@ -68,12 +68,14 @@ const Login = ({ navigation }) => {
 						<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 							<Button
 								// disabled={validatePassword(password) == true && validateEmail(email) == true ? false : true}
-								labelStyle={{ color: colors.iconColor }}
+								labelStyle={{ color: colors?.iconColor }}
 								style={{
 									margin: 10,
 									width: 120,
 									backgroundColor:
-										validatePassword(password) == true && validateEmail(email) == true ? colors.button : colors.warning,
+										validatePassword(password) == true && validateEmail(email) == true
+											? colors?.button
+											: colors?.warning,
 									opacity: validatePassword(password) == true && validateEmail(email) == true ? 1 : 0.5,
 								}}
 								mode="contained"
@@ -110,7 +112,7 @@ const Login = ({ navigation }) => {
 								}}>
 								Login
 							</Button>
-							<Text style={{ color: colors.primary, width: 100 }} onPress={() => navigation.navigate('SignUp')}>
+							<Text style={{ color: colors?.primary, width: 100 }} onPress={() => navigation.navigate('SignUp')}>
 								Go to sign up
 							</Text>
 						</View>

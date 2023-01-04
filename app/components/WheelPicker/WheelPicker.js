@@ -11,7 +11,7 @@ const WheelPicker = ({ selectedFormation, setSelectedFormation, formations }) =>
 				{formations.map(formation => (
 					<RadioButton.Item
 						key={formation.formation}
-						labelStyle={{ color: colors.secondary }}
+						labelStyle={{ color: colors?.secondary }}
 						label={formation.formation}
 						value={formation.formation}
 					/>

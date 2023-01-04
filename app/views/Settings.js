@@ -25,7 +25,7 @@ const Settings = () => {
 	};
 
 	return (
-		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors.PrimaryBackground }}>
+		<View style={{ flex: 1, paddingTop: 60, backgroundColor: colors?.PrimaryBackground }}>
 			<View
 				style={{
 					flex: 1,
@@ -33,12 +33,12 @@ const Settings = () => {
 					paddingLeft: 20,
 					paddingRight: 20,
 				}}>
-				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Settings</Headline>
+				<Headline style={{ color: colors?.primary, fontWeight: 'bold' }}>Settings</Headline>
 
 				<Checkbox.Item
 					label="Dark mode"
 					status={checked ? 'checked' : 'unchecked'}
-					labelStyle={{ color: colors.primary }}
+					labelStyle={{ color: colors?.primary }}
 					onPress={() => {
 						setChecked(!checked);
 						toggleTheme();
@@ -49,7 +49,7 @@ const Settings = () => {
 				<PrimaryBtn
 					handlePress={logoutUser}
 					content="Log out"
-					style={{ width: '100%', position: 'absolute', bottom: 10, backgroundColor: colors.warning }}
+					style={{ width: '100%', position: 'absolute', bottom: 10, backgroundColor: colors?.warning }}
 				/>
 				{/* <PrimaryBtn handlePress={toggleTheme} content="Change theme" style={{ width: '100%', marginTop: 20 }} /> */}
 			</View>

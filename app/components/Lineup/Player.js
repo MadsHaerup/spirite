@@ -29,7 +29,7 @@ const Player = ({ player, setActivePlayer, setIsEditing }) => {
 					/>
 					<Text
 						style={{
-							color: colors.primary,
+							color: colors?.primary,
 							fontSize: 12,
 						}}>
 						{player.name ? player.name.split(' ').pop() : '+'}

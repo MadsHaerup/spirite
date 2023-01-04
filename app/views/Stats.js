@@ -14,16 +14,16 @@ const Stats = () => {
 	const attendance = useAttendanceStore(state => state.attendance);
 	const absence = useAttendanceStore(state => state.absence);
 	return (
-		<ScrollView style={{ backgroundColor: colors.PrimaryBackground }}>
-			<View style={{ flex: 1, paddingTop: 60, alignItems: 'center', backgroundColor: colors.PrimaryBackground }}>
-				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Team Stats</Headline>
+		<ScrollView style={{ backgroundColor: colors?.PrimaryBackground }}>
+			<View style={{ flex: 1, paddingTop: 60, alignItems: 'center', backgroundColor: colors?.PrimaryBackground }}>
+				<Headline style={{ color: colors?.primary, fontWeight: 'bold' }}>Team Stats</Headline>
 				<BezierLineChart />
 				<Bar />
 				<Contribution />
-				<Headline style={{ color: colors.primary, fontWeight: 'bold' }}>Daily stats</Headline>
+				<Headline style={{ color: colors?.primary, fontWeight: 'bold' }}>Daily stats</Headline>
 				<View style={{ flexDirection: 'row' }}>
-					<Text style={{ marginRight: 10, color: colors.primary }}>Attendance: {attendance}</Text>
-					<Text style={{ color: colors.primary }}>Absence: {absence}</Text>
+					<Text style={{ marginRight: 10, color: colors?.primary }}>Attendance: {attendance}</Text>
+					<Text style={{ color: colors?.primary }}>Absence: {absence}</Text>
 				</View>
 				<Pie />
 			</View>
