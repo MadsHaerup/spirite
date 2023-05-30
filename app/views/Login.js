@@ -9,8 +9,12 @@ import { storeUser } from '../utils/user/storeUser';
 import { validateEmail } from '../utils/validation/emailValidation';
 import { validatePassword } from '../utils/validation/passwordValidation';
 import { APP_ID } from '@env';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = ({ navigation }) => {
+	if (navigation != undefined) {
+		navigation = useNavigation();
+	}
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { setUserId } = useContext(UserContext);
@@ -36,7 +40,8 @@ const Login = ({ navigation }) => {
 						<HelperText
 							style={{ marginBottom: 10, color: colors?.warning }}
 							type="error"
-							visible={validateEmail(email) == false ? true : false}>
+							visible={validateEmail(email) == false ? true : false}
+						>
 							Invalid Email.
 						</HelperText>
 
@@ -61,7 +66,8 @@ const Login = ({ navigation }) => {
 						<HelperText
 							style={{ color: colors?.warning }}
 							type="error"
-							visible={validatePassword(password) == false ? true : false}>
+							visible={validatePassword(password) == false ? true : false}
+						>
 							At least one uppercase letter, one lowercase letter, one number, and one special character.
 						</HelperText>
 
@@ -103,13 +109,13 @@ const Login = ({ navigation }) => {
 											mutableSubs.add(player);
 											mutableSubs.add(event);
 										});
-										console.log(realm.subscriptions.state); // log the subscription state
 
 										// navigation.navigate('Home');
 									} catch (err) {
 										console.error('Failed to log in', err.message);
 									}
-								}}>
+								}}
+							>
 								Login
 							</Button>
 							<Text style={{ color: colors?.primary, width: 100 }} onPress={() => navigation.navigate('SignUp')}>

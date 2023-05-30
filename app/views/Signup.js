@@ -7,8 +7,10 @@ import Logo from '../components/Logo/Logo';
 import { APP_ID } from '@env';
 import { validateEmail } from '../utils/validation/emailValidation';
 import { validatePassword } from '../utils/validation/passwordValidation';
+import { useNavigation } from '@react-navigation/native';
 
-const SignUp = ({ navigation }) => {
+const SignUp = () => {
+	const navigation = useNavigation();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const app = new Realm.App({ id: APP_ID });
@@ -33,7 +35,8 @@ const SignUp = ({ navigation }) => {
 						<HelperText
 							style={{ marginBottom: 10, color: colors?.warning }}
 							type="error"
-							visible={validateEmail(email) == false ? true : false}>
+							visible={validateEmail(email) == false ? true : false}
+						>
 							Invalid Email.
 						</HelperText>
 						<TextInput
@@ -56,7 +59,8 @@ const SignUp = ({ navigation }) => {
 						<HelperText
 							style={{ color: colors?.warning }}
 							type="error"
-							visible={validatePassword(password) == false ? true : false}>
+							visible={validatePassword(password) == false ? true : false}
+						>
 							At least one uppercase letter, one lowercase letter, one number, and one special character.
 						</HelperText>
 
@@ -81,7 +85,8 @@ const SignUp = ({ navigation }) => {
 									} catch (error) {
 										console.log(error);
 									}
-								}}>
+								}}
+							>
 								Sign up
 							</Button>
 							<Text style={{ color: colors?.primary, width: 100 }} onPress={() => navigation.navigate('Login')}>
